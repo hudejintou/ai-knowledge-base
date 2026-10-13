@@ -1,0 +1,16 @@
+# 个人资料 / 记忆 / 日志，不上传到 GitHub
+CLAUDE.md
+MEMORY/
+LOGS/
+PROJECTS/
+个人计算机学习与工作画像.md
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# 系统文件
+.DS_Store
