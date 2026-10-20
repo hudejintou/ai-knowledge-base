@@ -20,6 +20,7 @@
 - Python 为主，偏好可落地工程方案而非 Demo；项目要求可运行、可部署、有 README、能放 GitHub。
 - 代码：PEP8、清晰分层（API/service/models/utils）、Git 有 commit history。
 - 本地优先（LM Studio），其次云端 API。
+- **Git 提交信息用中文**：简要概述背景 + 做了什么/改了什么/为什么，可以稍详细——目的是回退或翻历史时不用看代码就知道每次改动的来龙去脉。
 
 ## 设备约束与模型选型（唯一记录处）
 
