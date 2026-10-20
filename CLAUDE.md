@@ -1,35 +1,43 @@
 # CLAUDE.md（工作区使用说明）
 
-> 本文件告诉 AI 助手（Claude Code / 本地模型）如何使用这套本地 AI 长期工作区，以及如何在长期项目中维护上下文。
+> 本文件告诉 AI 助手如何使用这套工作区。**最重要的一条：会话开始只读 2 个文件，不要全量重读。**
 
-## 工作区结构
+## 会话启动规则（省积分的关键）
+
+1. **必读（仅 2 个）**：`docs/PROJECTS/README.md`（项目当前状态+待办）+ `docs/MEMORY/AI_ROADMAP.md` 的「当前位置」部分。
+2. **按需再读**：涉及目标读 LONG_TERM_GOALS；涉及协作方式读 PREFERENCES；涉及背景读 PERSONAL_PROFILE；具体实验数据读 docs/EXPERIMENTS.md；历史过程读 docs/LOGS/。
+3. 不要每次会话通读全部文档；LOGS 是唯一事实源，其他文件只放状态和链接。
+
+## 目录结构
 
 ```
 AI/
-├── MEMORY/                # 长期有效信息（不要频繁改动）
-│   ├── PERSONAL_PROFILE.md   # 个人背景、职业、技术基础、AI 方向
-│   ├── AI_ROADMAP.md         # AI 学习路线、阶段、已掌握/正在学/下一目标
-│   ├── LONG_TERM_GOALS.md    # 长期职业/转行/项目/副业目标
-│   └── PREFERENCES.md        # 学习、编程、沟通偏好
-├── PROJECTS/              # 各 AI 项目的当前状态（每个项目一个子目录/文件）
-├── LOGS/                  # 每天/每次重要学习、开发、实验记录
-└── CLAUDE.md              # 本说明文件
+├── rag/            # 核心模块（rag_v1.py、corpus.py、chat.py）
+├── evals/          # 评估脚本 + runs/（结果 JSON）
+├── experiments/    # 一次性实验脚本
+├── backend/        # Django/DRF 后端（阶段 B）
+├── docs/
+│   ├── MEMORY/     # 长期记忆：PERSONAL_PROFILE / LONG_TERM_GOALS / AI_ROADMAP / PREFERENCES
+│   ├── PROJECTS/   # 项目状态索引（当前状态+待办，一页纸）
+│   ├── LOGS/       # 唯一事实源：按日期日志；workbuddy/ 为 AI 会话记录归档
+│   └── EXPERIMENTS.md  # 实验记录（变量/结果/结论）
+├── CLAUDE.md       # 本文件
+└── README.md       # 仓库说明
 ```
 
-## 信息分类原则（严格遵守）
+## 信息归属原则（一个事实只有一个家）
 
-- **MEMORY**：只有长期有效、跨对话有用的信息才写入（个人背景、目标、偏好、路线）。
-- **PROJECTS**：当前具体项目的状态、架构、进度、关键决策。
-- **LOGS**：临时过程、当天学习/开发记录、实验输出、排错过程。
-- 不要把所有聊天记录全保存；不要重复保存相同信息；不要随意修改已存在的重要文件。
+| 信息 | 唯一存放处 |
+|------|-----------|
+| 我是谁/设备/技术底子 | docs/MEMORY/PERSONAL_PROFILE.md |
+| 职业目标/里程碑/项目范围 | docs/MEMORY/LONG_TERM_GOALS.md |
+| 当前阶段/排期/验收标准/JD 对标 | docs/MEMORY/AI_ROADMAP.md |
+| 学习与协作偏好/模型选型表 | docs/MEMORY/PREFERENCES.md |
+| 发生了什么（按日期） | docs/LOGS/YYYY-MM-DD-*.md |
+| 实验数据与结论 | docs/EXPERIMENTS.md |
+| 项目当前状态+待办 | docs/PROJECTS/README.md |
 
-## AI 助手使用约定
-
-1. 每次开始长期任务前，先读取 `MEMORY/` 下的文件以恢复上下文。
-2. 新建文件/目录前，先检查当前目录是否已存在，避免覆盖重要内容。
-3. 重要技术决策、环境变更、项目里程碑写入对应文件。
-4. 所有文件使用 Markdown，内容简洁、结构化、便于 AI 后续读取。
-5. 如发现更合理的目录结构，可提建议，但不要擅自大规模修改。
-6. 不要进行大型模型下载，也不要修改 Python / Conda / Ollama / 系统环境（除非用户明确要求）。
-
-
+- 更新进展时：**写 LOGS + 刷新 PROJECTS/README 状态 + 勾选 ROADMAP 对应项**，不要在多处复述细节。
+- 长期有效信息才进 MEMORY；临时过程进 LOGS；重要技术决策（选型/架构/踩坑）记入 LOGS。
+- 新建文件前先检查是否已存在；文件用 Markdown、简洁结构化。
+- 不要大规模下载模型、不要修改 Conda/系统环境（除非用户明确要求）；不要要求用户粘贴 API Key。
