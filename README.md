@@ -1,60 +1,62 @@
-# ai-demo
+# 企业知识库 RAG 后端
 
-基于智谱 GLM 大模型的 Python 示例，演示**真实流式输出**与**Function Calling（工具调用）**两个核心能力。
+基于本地 Embedding 与智谱大模型的知识库问答原型。检索到的资料能支撑回答时才作答，否则拒答。
 
 ## 功能
 
-- **流式输出**：调用模型并以逐字方式实时打印返回内容。
-- **Function Calling**：
-  - `get_weather`：查询指定城市的当前天气（示例中使用假数据）。
-  - `calculate`：安全计算数学表达式，支持 `+ - * /`、括号和负号（基于 `ast` 安全求值，不使用 `eval`）。
-  - 支持模型自主决定是否调用工具，以及多步连续调用。
+- **本地 Embedding 检索**：LM Studio 运行 `text-embedding-qwen3-embedding-0.6b`，余弦相似度检索。
+- **可答性判断**：回答模型（智谱 `glm-4.5-air`）在资料不足时输出 `[NO_ANSWER]`，由代码识别并拒答。
+- **评估体系**：46 题评估集（EVAL_SET 36 题 + HOLDOUT_SET 10 题），支持多次运行统计稳定性。
 
 ## 环境要求
 
-- Python 3.8+
-- 一个可用的智谱 AI（BigModel）API Key
+- macOS（Apple Silicon，16GB 内存）
+- Python 3.13
+- [LM Studio](https://lmstudio.ai/)，已加载 `text-embedding-qwen3-embedding-0.6b` 并启动本地服务（默认 `http://127.0.0.1:1234/v1`）
+- 智谱 AI API Key
 
 ## 安装
 
 ```bash
-pip install openai
+pip install openai numpy
 ```
 
 ## 配置
-
-通过环境变量提供 API Key（**请勿把密钥写进代码或提交到仓库**）：
 
 ```bash
 export ZHIPU_API_KEY="你的智谱 API Key"
 ```
 
-模型名称在代码中通过 `MODEL` 常量配置，请以你账号实际可用的模型名为准。
+也可以写入项目根目录的 `.env`（已被 `.gitignore` 忽略，**不要提交**）。
 
-## 使用
+## 运行问答
+
+在项目根目录执行，必须用 `python -m`：
 
 ```bash
-python test.py
+python -m rag.chat
 ```
 
-运行后会依次执行若干示例：流式解释 RAG、查询天气、普通对话、数学计算，以及多步工具调用等。
+输入问题回车即可，输入 `q` 退出。例如：
 
-## AI 转岗学习工作区
+- `怎么做缓存？`：会给出基于资料的回答。
+- `今天股市怎么样？`：会显示 `[拒答]`。
 
-本仓库同时维护 AI 应用工程学习路线与项目状态：
+## 运行评估
 
-- `MEMORY/AI_ROADMAP.md`：当前阶段、里程碑和进度。
-- `MEMORY/LONG_TERM_GOALS.md`：职业与项目目标。
-- `PROJECTS/README.md`：主项目与小项目的当前状态。
-- `LOGS/`：重要实验和排错记录。
+```bash
+python -m evals.eval_all
+```
 
-当前项目策略为 **1 个企业知识库 RAG 主项目 + 1 个轻量 Function Calling/Agent 小项目**；不并行扩展多个 Demo。最新交接背景以用户提供的 HANDOFF 内容为准，落实到对应文档时应区分“已完成”与“待验证”。
+结果保存在 `evals/runs/`。
 
-## 代码结构
+## 项目结构
 
-| 函数 | 说明 |
+| 路径 | 说明 |
 | --- | --- |
-| `stream_chat(prompt)` | 流式对话输出 |
-| `get_weather(location)` | 天气查询工具（示例假数据） |
-| `calculate(expression)` | 安全的数学表达式计算工具 |
-| `chat_with_tools(question, max_rounds)` | 带工具调用的多轮对话主循环 |
+| `rag/corpus.py` | 知识库语料与评估题 |
+| `rag/rag_v1.py` | 检索、判断与回答核心函数 |
+| `rag/chat.py` | 命令行问答入口 |
+| `evals/` | 评估脚本与结果 |
+| `experiments/` | 一次性实验脚本（早期 Function Calling Demo 见 `experiments/test.py`，说明见 `experiments/README.md`） |
+| `docs/` | 学习与实验记录 |
