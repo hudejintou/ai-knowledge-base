@@ -1,4 +1,4 @@
-## 实验 1：Qwen3-Embedding-0.6B 检索基线
+  ## 实验 1：Qwen3-Embedding-0.6B 检索基线
 - 语料：corpus.py，20 条 DOCS
 - 评估：24 题（20 可回答 + 4 无关）
 - 模型：text-embedding-qwen3-embedding-0.6b（LM Studio 本地）
@@ -49,10 +49,10 @@
 ## 实验 9：全量评估 RUNS=3（第二次）
 - 文件：eval_runs/run_20261019_230945.json
 - 结果：总体正确率 98.55%（137/138）
-- 不稳定题：见第 1 步输出
-- 与实验 7 对比：不稳定题是否相同，决定它是否为稳定的边界样本
+- 不稳定题：「Function Calling 怎么做参数校验？」
+- 与实验 7 对比：不稳定题相同，判定为稳定的边界样本
 ## 实验 10：目录迁移后的回归测试
 - 变更：rag_v1.py、corpus.py 移入 rag/；评估脚本移入 evals/；结果 JSON 移入 evals/runs/
 - 运行方式：必须在项目根目录用 python -m 运行
-- 验证：python -m evals.eval_retrieval 指标与迁移前一致
-- 结果：（填入 eval_all 的总体正确率）
+- 验证：python -m evals.eval_all 总体正确率与迁移前一致（迁移前稳定性基线 98.55%~100%）
+- 结果：总体正确率 100%（46 题 × RUNS=3，无错误题），结果文件 evals/runs/run_20261019_233739.json
