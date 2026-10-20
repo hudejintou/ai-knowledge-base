@@ -4,22 +4,22 @@
 
 ## 当前项目组合
 
-### 主项目：企业知识库 RAG 后端（进行中：检索与拒答已验证，阶段 A 冲刺可运行版）
+### 主项目：企业知识库 RAG 后端（阶段 A 已完成，阶段 B 后端化进行中）
 
 - **目标**：构建可运行、可展示的知识库问答后端，优先贴合 Django 后端经验。
-- **技术路线**：先用 Python 验证本地 Embedding + 余弦相似度检索；随后推进文档切分、向量索引、引用、流式问答、Django/DRF、Redis/Celery、Docker Compose 与小型评估集。
-- **当前状态（2026-10-19）**：检索与拒答判断已定量验证，尚未接入后端；主线排期见 `docs/MEMORY/AI_ROADMAP.md`「接下来学习大纲」阶段 A~E。
-- **当前进展（2026-10-19）**：
-  - Embedding 定案 **Qwen3-Embedding-0.6B**（LM Studio 本地），对比 Nomic 5/5 全中（2026-10-17）。
-  - 拒答方案定案：纯相似度阈值挡不住"同主题但语料无答案"（实验 2 证伪）；改由回答模型判断可答性，输出 `[NO_ANSWER]`（实验 3、4）。
-  - 评估体系：EVAL_SET 36 题 + HOLDOUT_SET 10 题；`evals/eval_all.py` 自动化评估，支持多次运行统计稳定性，结果 JSON 存 `evals/runs/`。
-  - 稳定性：RUNS=3 总体正确率 98.55%~100%，边界样本 1 条（"Function Calling 怎么做参数校验？"）。
-  - 工程整理：目录分层 `rag/`、`evals/`、`experiments/`、`docs/`；根目录 `python -m` 运行，迁移后回归指标一致；`.env` 管理 Key 并已加入 `.gitignore`。
-- **待办**：
-  - [ ] 回归测试 `python -m evals.eval_all`，记录总体正确率（回填 EXPERIMENTS.md 实验 10）
+- **技术路线**：本地 Qwen3-Embedding + 余弦检索 + 模型判断拒答 → DRF 后端化 → 切分与检索参数实验 → Redis/Celery/Docker 工程化。
+- **仓库**：GitHub `hudejintou/ai-knowledge-base`（main 分支）。
+- **当前状态（2026-10-21）**：阶段 A 全部完成并提交；阶段 B 的 `/api/ask/` 接口已完成，Document 模型与接口测试待做。
+- **当前进展**：
+  - 2026-10-19：检索与拒答定量验证、46 题评估体系、目录分层（详见 `LOGS/2026-10-19-进展汇总.md`）。
+  - 2026-10-20：回归测试 100%（46 题 × RUNS=3，实验 10 回填）；`rag/chat.py` 命令行问答入口；README 重写。
+  - 2026-10-21：阶段 B 起步——新建 `backend/` Django 项目（config + qa app），DRF `POST /api/ask/` 接口：空问题返回 400；拒答与可答统一响应结构 `{"refused": bool, "answer": str|null}`；内部调用 `answer_with_judgement`。
+  - 2026-10-21 凌晨：全项目首次推送 GitHub（5 个 commit，`.env` 未被跟踪）。
+- **待办（阶段 B 剩余）**：
+  - [ ] Document 模型：知识库从 corpus.py 迁移到数据库表
+  - [ ] 接口测试（可答 / 拒答 / 异常输入三类）
   - [ ] 确认智谱旧 Key 已重置
-  - [ ] 提交 Git，确认 `.env` 未被跟踪
-- **下一步**：阶段 A（回归测试 → `rag/chat.py` 命令行入口 → Git + README），之后阶段 B 用 DRF 后端化。
+- **下一步**：补 Document 模型 + 接口测试，完成阶段 B 验收标准；随后进入阶段 C（切分与检索参数实验）。
 
 ### 小项目：轻量 Function Calling / Agent（原型已完成）
 
