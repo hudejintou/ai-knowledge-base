@@ -9,17 +9,17 @@
 - **目标**：构建可运行、可展示的知识库问答后端，优先贴合 Django 后端经验。
 - **技术路线**：本地 Qwen3-Embedding + 余弦检索 + 模型判断拒答 → DRF 后端化 → 切分与检索参数实验 → Redis/Celery/Docker 工程化。
 - **仓库**：GitHub `hudejintou/ai-knowledge-base`（main 分支）。
-- **当前状态（2026-10-21）**：阶段 A 全部完成并提交；阶段 B 的 `/api/ask/` 接口已完成，Document 模型与接口测试待做。
+- **当前状态（2026-10-21 晚）**：阶段 B 主体完成——Document 模型入库、检索切换到数据库、接口测试通过；**端到端验证未完成（/api/ask/ 智谱 401 排查中）**。
 - **当前进展**：
   - 2026-10-19：检索与拒答定量验证、46 题评估体系、目录分层（详见 `LOGS/2026-10-19-进展汇总.md`）。
   - 2026-10-20：回归测试 100%（46 题 × RUNS=3，实验 10 回填）；`rag/chat.py` 命令行问答入口；README 重写。
-  - 2026-10-21：阶段 B 起步——新建 `backend/` Django 项目（config + qa app），DRF `POST /api/ask/` 接口：空问题返回 400；拒答与可答统一响应结构 `{"refused": bool, "answer": str|null}`；内部调用 `answer_with_judgement`。
-  - 2026-10-21 凌晨：全项目首次推送 GitHub（5 个 commit，`.env` 未被跟踪）。
-- **待办（阶段 B 剩余）**：
-  - [ ] Document 模型：知识库从 corpus.py 迁移到数据库表
-  - [ ] 接口测试（可答 / 拒答 / 异常输入三类）
-  - [ ] 确认智谱旧 Key 已重置
-- **下一步**：补 Document 模型 + 接口测试，完成阶段 B 验收标准；随后进入阶段 C（切分与检索参数实验）。
+  - 2026-10-21 凌晨：阶段 A 收官 + 首次推送 GitHub；`backend/` Django 项目与 `/api/ask/` 接口。
+  - 2026-10-21 晚：Document 模型入库（20 条，Qwen3-Embedding 向量）；检索切换到数据库（`qa/retrieval.py`，top-3 分数与旧实现一致）；接口测试 3 项通过（mock 模型调用）；模型切换 glm-5.3-flash，实验 11 基线 100%（详见 `LOGS/2026-10-21-阶段B数据库化与接口切换.md`）。
+- **待办（阶段 B 收尾）**：
+  - [ ] 排查智谱 401（确认服务进程读到的 Key），端到端验证 /api/ask/ 三类场景
+  - [ ] 解耦：Prompt 与模型名抽成共享配置（service.py 与 rag_v1.py 仍复制）
+  - [ ] Document 入库测试；决定 rag_v1.py 与 evals/ 统一切换前旧路径的保留时间
+- **下一步**：排查 401 → 端到端验证 → 解耦 Prompt/模型名，完成阶段 B 验收标准；随后进入阶段 C（切分与检索参数实验）。
 
 ### 小项目：轻量 Function Calling / Agent（原型已完成）
 
