@@ -31,7 +31,7 @@ chat_client = OpenAI(
     api_key=os.environ["ZHIPU_API_KEY"],
     base_url="https://open.bigmodel.cn/api/paas/v4/",
 )
-CHAT_MODEL = "glm-4.5-air"
+CHAT_MODEL = "glm-5.3-flash"
 
 
 

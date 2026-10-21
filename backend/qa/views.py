@@ -1,19 +1,10 @@
-import sys
-from pathlib import Path
-
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
 
-# 让 Django 能导入项目根目录下的 rag 包：
-# 当前文件在 backend/qa/views.py，项目根是往上两级
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-# 注意：导入 rag_v1 时会立即连接 LM Studio 并计算文档向量。
-# 所以 LM Studio 没启动时，Django 启动（或首次请求）就会报错。
-from rag.rag_v1 import answer_with_judgement  # noqa: E402
+# 只从 qa.service 导入。service 不导入 rag_v1，
+# 所以启动 Django 时不会连接 LM Studio，也不会计算全部文档向量。
+from qa.service import ask_with_db
 
 
 class AskView(APIView):
@@ -21,15 +12,16 @@ class AskView(APIView):
 
     def post(self, request):
         question = (request.data.get("question") or "").strip()
-        # 异常输入：空问题直接返回 400，不调用模型，节省额度
+        # 空问题直接返回 400，不调用模型，节省额度
         if not question:
             return Response(
                 {"error": "question 不能为空"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        refused, text = answer_with_judgement(question)
-        # 拒答与可答使用同一个结构，前端只看 refused 字段即可
+        # 检索改为读数据库，拒答判断逻辑与之前一致
+        refused, text = ask_with_db(question)
+        # 响应结构不变：拒答时 answer 为 null
         return Response(
             {"refused": refused, "answer": None if refused else text},
             status=status.HTTP_200_OK,

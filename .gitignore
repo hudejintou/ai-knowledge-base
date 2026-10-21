@@ -11,6 +11,7 @@ eval_runs/
 # Django 本地数据库（阶段 B Document 模型迁移后按需恢复种子数据）
 db.sqlite3
 *.sqlite3
+*.sqlite
 
 # 系统文件
 .DS_Store
