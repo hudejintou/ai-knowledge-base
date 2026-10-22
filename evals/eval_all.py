@@ -5,7 +5,7 @@ from rag.corpus import EVAL_SET, HOLDOUT_SET  # 语料和评估题，现在位�
 from rag.corpus import EVAL_SET, HOLDOUT_SET  # 语料和评估题，现在位于 rag 包中
 from rag.rag_v1 import answer_with_judgement, CHAT_MODEL  # 判断函数和聊天模型名
 
-RUNS = 1  # 之后改成 3，统计一致率
+RUNS = 3  # 之后改成 3，统计一致率
 
 def run_suite(name, cases):
     records = []

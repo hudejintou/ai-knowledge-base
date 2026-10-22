@@ -1,0 +1,331 @@
+{
+  "time": "2026-10-22T22:42:15",
+  "model": "glm-5.3-flash",
+  "top_k": 3,
+  "total_questions": 46,
+  "accuracy": 1.0,
+  "results": [
+    {
+      "question": "怎么做缓存？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "根据资料，做缓存的常见方式是：使用 Redis 这类基于内存的键值数据库，把热点数据放进 Redis，并设置过期时间，从而减少数据库的查询压力。"
+    },
+    {
+      "question": "Redis 数据怎么持久化？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "Redis 支持两种持久化方式：RDB 是定时快照，AOF 记录每条写命令，两者可以结合使用以降低数据丢失风险。"
+    },
+    {
+      "question": "排行榜用 Redis 的哪种数据类型？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "排行榜适合用 Redis 的 **ZSet** 数据类型。"
+    },
+    {
+      "question": "后台异步跑任务用什么？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "后台异步跑任务用 **Celery**。Celery 是 Python 的分布式任务队列，适合处理耗时任务（如发送邮件、生成报表），通过 Redis 或 RabbitMQ 作为消息中间件异步执行。"
+    },
+    {
+      "question": "怎么定时执行任务？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "可以使用 Celery Beat 来定时执行任务。它是 Celery 的定时任务组件，可以按固定间隔或 crontab 规则周期性地触发任务。Celery 本身是 Python 的分布式任务队列，通过 Redis 或 RabbitMQ 作为消息中间件异步执行任务，适合处理发送邮件、生成报表等耗时任务。"
+    },
+    {
+      "question": "Python 怎么操作数据库表？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "根据资料，Python 可以通过 **Django ORM** 操作数据库表：\n\n- Django ORM 把数据库表映射成 Python 类，通过 **Model** 定义字段；\n- 使用 **QuerySet** 进行查询，避免手写 SQL；\n- 当 Model 发生变化时，通过 Django 的 Migration 机制同步数据库：用 `makemigrations` 生成迁移文件，用 `migrate` 将其应用到数据库。"
+    },
+    {
+      "question": "数据库表结构变更怎么同步？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "数据库表结构变更可以通过 Django 的 Migration 机制同步：当 Model 发生变化时，用 `makemigrations` 根据变化生成迁移文件，再用 `migrate` 将其应用到数据库。"
+    },
+    {
+      "question": "怎么做接口的数据校验？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "使用 Django REST Framework 提供的 Serializer 做接口的数据校验：可以声明字段类型和约束，并在 validate 方法里做自定义校验。"
+    },
+    {
+      "question": "怎么把应用和依赖打包？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "用 Docker 打包：通过 Dockerfile 构建镜像，即可将应用及其依赖打包，镜像运行后得到容器。"
+    },
+    {
+      "question": "怎样一条命令启动多个服务？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "使用 docker-compose：用一个 YAML 文件定义多个服务及其网络和卷，然后执行一条命令即可启动整套环境。"
+    },
+    {
+      "question": "能存向量的 PostgreSQL 插件是什么？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "能存向量的 PostgreSQL 插件是 **pgvector** 扩展。根据资料，pgvector 可以存储和检索向量，并且可以直接复用 PostgreSQL。"
+    },
+    {
+      "question": "MySQL 用什么索引结构？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "MySQL 的索引通常采用 B+ 树结构（资料中指 InnoDB 引擎的索引）。"
+    },
+    {
+      "question": "给表加索引有什么代价？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "根据资料，给表加索引的代价是：**会增加写入开销和存储空间**。\n\n（资料还指出，索引能加快查询速度，因此应针对高频查询的字段建立索引。）"
+    },
+    {
+      "question": "RAG 解决什么问题？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "RAG 用来减少幻觉，并让大模型接入私有知识。其做法是先检索相关文档，再让大模型基于这些文档进行回答。"
+    },
+    {
+      "question": "文档切多大比较合适？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "根据资料，常见做法是按 300 到 800 个字符切块，并在相邻块之间保留一定重叠。切得太大会引入无关内容，切得太小会丢失上下文，因此需要在这两者之间权衡。"
+    },
+    {
+      "question": "文本怎么变成可比较的向量？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "通过 Embedding 把文本转换为向量。转换后，语义相近的文本在向量空间中距离更近，常用余弦相似度来衡量向量的相近程度，从而实现可比较。"
+    },
+    {
+      "question": "本地小规模实验用哪个向量库？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "**Chroma**。资料中明确说明 Chroma 适合本地小规模实验。"
+    },
+    {
+      "question": "大模型怎么调用外部工具？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "大模型通过 Function Calling 调用外部工具：模型根据工具的 JSON Schema 决定是否调用工具以及传入的参数，由开发者执行工具后，再把结果回传给模型。"
+    },
+    {
+      "question": "怎样减少模型编造资料外的内容？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "根据资料，可以从以下两方面减少模型编造资料外的内容：\n\n1. **在 Prompt 中明确要求**：明确要求模型只依据给定资料回答，可以减少模型补充资料外内容的情况，但不能完全消除。\n2. **使用 RAG**：先检索相关文档，再让大模型基于文档回答，用来减少幻觉并接入私有知识。"
+    },
+    {
+      "question": "Git 变基会有什么影响？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "根据资料，Git 变基（rebase）的影响包括：\n\n1. 会把当前分支的提交移到另一个分支的最新提交之后；\n2. 使提交历史呈线性；\n3. 不应对已推送的公共分支使用。"
+    },
+    {
+      "question": "今天股市怎么样？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "明天会下雨吗？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "今天中午吃什么比较好？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "推荐一部好看的电影",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Redis 集群怎么搭建？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Redis 主从复制怎么配置？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Celery 任务失败后怎么重试？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Django 怎么做用户登录认证？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Django 怎么配置缓存中间件？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Docker 怎么把镜像推送到仓库？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "PostgreSQL 怎么做主从备份？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "MySQL 的慢查询怎么排查？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "RAG 的 Reranker 怎么选型？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Function Calling 怎么做参数校验？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Git 怎么撤销一次提交？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Embedding 模型怎么微调？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Redis 拿来当缓存用时要注意什么？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "根据资料，Redis 当缓存用时要：把热点数据放进 Redis，并设置过期时间，这样能减少数据库查询压力。"
+    },
+    {
+      "question": "Celery 能帮忙做哪类耗时工作？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "Celery 适合处理耗时任务，例如发送邮件、生成报表，通过 Redis 或 RabbitMQ 作为消息中间件异步执行。"
+    },
+    {
+      "question": "ORM 的作用是什么？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "ORM 的作用是把数据库表映射成 Python 类，通过 Model 定义字段，用 QuerySet 进行查询，从而避免手写 SQL。（依据资料中关于 Django ORM 的描述）"
+    },
+    {
+      "question": "Docker 镜像和容器的关系是什么？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "根据资料，通过 Dockerfile 构建镜像，镜像运行后得到容器。即镜像是构建产物，运行后就成为容器。"
+    },
+    {
+      "question": "文本切块时块大小怎么选？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "常见做法是按 300 到 800 个字符切块，并在相邻块之间保留一定重叠，以避免语义被切断。块的大小需要权衡：切得太大会引入无关内容，切得太小会丢失上下文。"
+    },
+    {
+      "question": "大模型怎么获得外部数据的访问能力？",
+      "should_refuse": false,
+      "refused": false,
+      "correct": true,
+      "answer": "根据资料，大模型主要通过以下两种方式获得外部数据的访问能力：\n\n1. **Function Calling（工具调用）**：让大模型根据工具的 JSON Schema 决定是否调用工具以及传入的参数，由开发者执行后将结果回传给模型。\n\n2. **RAG（检索增强生成）**：先检索相关文档，再让大模型基于检索到的文档回答，从而接入私有知识并减少幻觉。"
+    },
+    {
+      "question": "Redis 怎么做分布式锁？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "这周末天气怎么样？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Django 怎么部署到 Nginx？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    },
+    {
+      "question": "Docker 怎么限制容器内存？",
+      "should_refuse": true,
+      "refused": true,
+      "correct": true,
+      "answer": "[NO_ANSWER]"
+    }
+  ]
+}
