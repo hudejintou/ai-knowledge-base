@@ -3,10 +3,9 @@ import os
 from openai import OpenAI
 
 from qa.retrieval import retrieve_from_db
+from qa.config import CHAT_MODEL, EMB_MODEL, NO_ANSWER, ANSWER_SYSTEM_PROMPT, LMSTUDIO_BASE_URL
 
 # 本地 embedding 客户端：与 rag_v1.py 使用同一个 LM Studio 服务和模型
-LMSTUDIO_BASE_URL = os.getenv("LMSTUDIO_BASE_URL", "http://127.0.0.1:1234/v1")
-EMB_MODEL = "text-embedding-qwen3-embedding-0.6b"
 embed_client = OpenAI(
     api_key=os.getenv("LMSTUDIO_API_KEY", "lm-studio"),
     base_url=LMSTUDIO_BASE_URL,
@@ -18,15 +17,6 @@ chat_client = OpenAI(
     base_url="https://open.bigmodel.cn/api/paas/v4/",
 )
 # 注意：这里复制了 rag_v1.py 的模型名和 Prompt，需与其保持一致。
-CHAT_MODEL = os.getenv("CHAT_MODEL", "glm-5.3-flash")
-NO_ANSWER = "[NO_ANSWER]"
-ANSWER_SYSTEM_PROMPT = (
-    "你是严谨的问答助手。只能依据用户提供的资料回答。"
-    "只要资料中包含与问题直接相关的信息，就应作答，"
-    "不要因为缺少细节或措辞不同而拒答。"
-    f"只有资料与问题完全无关，或完全无法推出答案时，才只输出 {NO_ANSWER}。"
-    "作答时用中文简洁回答，不要补充资料之外的事实。"
-)
 
 
 def embed_query(text):
