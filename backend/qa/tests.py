@@ -2,10 +2,8 @@ from unittest.mock import patch
 
 from django.test import TestCase
 
-from django.test import TestCase
 from qa.models import Document
 from qa.retrieval import retrieve_from_db
-
 
 class AskViewTests(TestCase):
     # patch 的路径写"被使用的地方"：视图里导入后的名字 qa.views.ask_with_db
