@@ -11,8 +11,10 @@ from datetime import datetime
 from rag.corpus import EVAL_SET, HOLDOUT_SET
 from rag.rag_v1 import answer_with_judgement, CHAT_MODEL
 
-TOP_K = 3  # 本次固定值，不做对比
+import os
 
+# 通过环境变量指定 top_k，默认 3，便于做对照实验而不改代码
+TOP_K = int(os.getenv("TOP_K", "3"))
 
 def run(cases):
     records = []
