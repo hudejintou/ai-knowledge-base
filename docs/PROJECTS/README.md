@@ -20,10 +20,10 @@
   - [ ] Docker + docker-compose 一键启动
   - [ ] 日志与错误处理
 - **遗留（阶段 B/C 带过来）**：
-  - [ ] **Prompt 漂移修复**：config.py 仍是旧宽松版，rag_v1.py 已收紧——统一为一份
+  - [x] Prompt 漂移修复（2026-10-26 晚：config.py 已与 rag_v1.py 严格版同步）
   - [ ] /api/ask/ 端到端 curl 三场景回归
   - [ ] 候选默认值（400/50/3）待更大规模语料验证后固定到代码参数
-- **下一步**：进入阶段 D 工程化；顺手先修 Prompt 漂移（十分钟级）再动 Redis。
+- **下一步**：进入阶段 D 工程化（Redis 缓存 → Celery 异步入库 → Docker Compose → 日志）。
 
 ### 小项目：轻量 Function Calling / Agent（原型已完成）
 
