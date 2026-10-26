@@ -1,0 +1,197 @@
+{
+  "200": {
+    "命中率": 1.0,
+    "明细": [
+      {
+        "question": "大语言模型是基于什么架构训练的？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "大模型的预测下一个词机制是什么？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "大模型有哪两个常见局限？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "什么是幻觉？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "RAG 的基本流程是什么？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "RAG 如何帮助追溯来源？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "文本块太大有什么问题？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "相邻块为什么要保留重叠？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "余弦相似度衡量的是什么？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "仅靠相似度阈值能否判断问题可答？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "AI 能否预测明天的股价？",
+        "type": "无关",
+        "hit": null
+      },
+      {
+        "question": "今天中午吃什么比较好？",
+        "type": "无关",
+        "hit": null
+      }
+    ]
+  },
+  "400": {
+    "命中率": 1.0,
+    "明细": [
+      {
+        "question": "大语言模型是基于什么架构训练的？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "大模型的预测下一个词机制是什么？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "大模型有哪两个常见局限？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "什么是幻觉？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "RAG 的基本流程是什么？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "RAG 如何帮助追溯来源？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "文本块太大有什么问题？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "相邻块为什么要保留重叠？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "余弦相似度衡量的是什么？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "仅靠相似度阈值能否判断问题可答？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "AI 能否预测明天的股价？",
+        "type": "无关",
+        "hit": null
+      },
+      {
+        "question": "今天中午吃什么比较好？",
+        "type": "无关",
+        "hit": null
+      }
+    ]
+  },
+  "800": {
+    "命中率": 1.0,
+    "明细": [
+      {
+        "question": "大语言模型是基于什么架构训练的？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "大模型的预测下一个词机制是什么？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "大模型有哪两个常见局限？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "什么是幻觉？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "RAG 的基本流程是什么？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "RAG 如何帮助追溯来源？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "文本块太大有什么问题？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "相邻块为什么要保留重叠？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "余弦相似度衡量的是什么？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "仅靠相似度阈值能否判断问题可答？",
+        "type": "可答",
+        "hit": true
+      },
+      {
+        "question": "AI 能否预测明天的股价？",
+        "type": "无关",
+        "hit": null
+      },
+      {
+        "question": "今天中午吃什么比较好？",
+        "type": "无关",
+        "hit": null
+      }
+    ]
+  }
+}

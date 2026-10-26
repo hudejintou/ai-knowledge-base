@@ -1,0 +1,884 @@
+{
+  "200": {
+    "top3命中率": 0.8409,
+    "top1命中率": 0.5909,
+    "明细": [
+      {
+        "question": "RAG 这个词最早出现在哪篇论文中？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "大型预训练语言模型在知识访问上存在什么局限？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 中的参数化记忆和非参数化记忆分别是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 的检索器和生成器分别采用什么模型？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "RAG-Sequence 和 RAG-Token 的区别是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "RAG-Token 更适合什么类型的问题？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "论文中维基百科的知识源是如何切分的？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "论文用什么索引结构做最大内积搜索？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "RAG 在 TriviaQA 上相比哪类方法有明显提升？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "替换知识索引为什么能更新模型掌握的知识？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "嵌入是把什么映射成什么的技术？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "嵌入向量之间的距离通常用来刻画什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "余弦相似度的取值范围是多少？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "为什么余弦相似度对文本长短不敏感？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "text-embedding-3-small 的输出维度和价格是多少？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "text-embedding-3-large 相比 small 有什么特点？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "第三代嵌入模型的最大输入长度是多少，超长文本怎么办？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "dimensions 参数的作用是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "嵌入在检索之外还有哪些典型应用？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "为什么查询和文档必须使用同一个嵌入模型？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "标准 RAG 的预处理流程包括哪几步？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "为什么嵌入模型常需要配合 BM25 使用？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "BM25 适合检索什么类型的查询？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "传统 RAG 的上下文难题指什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "上下文化嵌入和上下文化 BM25 分别是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "生成块上下文说明时，Anthropic 用什么方法降低成本？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "文中的评估指标 1 减 recall@20 指什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "仅用上下文化嵌入时，top-20 失败率从多少降到多少？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "重排序在流程中处于什么位置，文中用了多少候选和保留数量？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "文中测试出的最佳组合是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 对 LLM 响应的接地是什么意思？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 主要能缓解 LLM 的哪两类问题？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "查询理解的挑战是什么，举例说明？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 实现中的五类主要挑战有哪些？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "代理式检索由谁负责查询规划？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "经典 RAG 模式适合什么场景？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "混合检索指的是什么，它为什么能提高召回？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "页面列出的内容准备支持能力有哪些？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "页面建议在哪些情况下优先选择代理式检索？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "Foundry IQ 是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "AI 能否预测明天的股价？",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "今天中午吃什么比较好？",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "北京今天的天气怎么样？",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "介绍一下猫的饮食习惯。",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "RAG 的检索器和生成器分别采用什么模型，它们如何联合训练？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "Anthropic 的上下文化处理和重排序分别解决什么问题？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "Microsoft 的混合检索和代理式检索各自的作用是什么？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "OpenAI 的余弦相似度与嵌入维度选择之间有什么关系？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      }
+    ]
+  },
+  "400": {
+    "top3命中率": 0.9091,
+    "top1命中率": 0.7045,
+    "明细": [
+      {
+        "question": "RAG 这个词最早出现在哪篇论文中？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "大型预训练语言模型在知识访问上存在什么局限？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "RAG 中的参数化记忆和非参数化记忆分别是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 的检索器和生成器分别采用什么模型？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG-Sequence 和 RAG-Token 的区别是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG-Token 更适合什么类型的问题？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "论文中维基百科的知识源是如何切分的？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "论文用什么索引结构做最大内积搜索？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "RAG 在 TriviaQA 上相比哪类方法有明显提升？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "替换知识索引为什么能更新模型掌握的知识？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "嵌入是把什么映射成什么的技术？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "嵌入向量之间的距离通常用来刻画什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "余弦相似度的取值范围是多少？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "为什么余弦相似度对文本长短不敏感？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "text-embedding-3-small 的输出维度和价格是多少？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "text-embedding-3-large 相比 small 有什么特点？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "第三代嵌入模型的最大输入长度是多少，超长文本怎么办？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "dimensions 参数的作用是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "嵌入在检索之外还有哪些典型应用？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "为什么查询和文档必须使用同一个嵌入模型？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "标准 RAG 的预处理流程包括哪几步？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "为什么嵌入模型常需要配合 BM25 使用？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "BM25 适合检索什么类型的查询？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "传统 RAG 的上下文难题指什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "上下文化嵌入和上下文化 BM25 分别是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "生成块上下文说明时，Anthropic 用什么方法降低成本？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "文中的评估指标 1 减 recall@20 指什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "仅用上下文化嵌入时，top-20 失败率从多少降到多少？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "重排序在流程中处于什么位置，文中用了多少候选和保留数量？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "文中测试出的最佳组合是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 对 LLM 响应的接地是什么意思？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 主要能缓解 LLM 的哪两类问题？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "查询理解的挑战是什么，举例说明？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 实现中的五类主要挑战有哪些？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "代理式检索由谁负责查询规划？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "经典 RAG 模式适合什么场景？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "混合检索指的是什么，它为什么能提高召回？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "页面列出的内容准备支持能力有哪些？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "页面建议在哪些情况下优先选择代理式检索？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "Foundry IQ 是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "AI 能否预测明天的股价？",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "今天中午吃什么比较好？",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "北京今天的天气怎么样？",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "介绍一下猫的饮食习惯。",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "RAG 的检索器和生成器分别采用什么模型，它们如何联合训练？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "Anthropic 的上下文化处理和重排序分别解决什么问题？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "Microsoft 的混合检索和代理式检索各自的作用是什么？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "OpenAI 的余弦相似度与嵌入维度选择之间有什么关系？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      }
+    ]
+  },
+  "800": {
+    "top3命中率": 0.9318,
+    "top1命中率": 0.6136,
+    "明细": [
+      {
+        "question": "RAG 这个词最早出现在哪篇论文中？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "大型预训练语言模型在知识访问上存在什么局限？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "RAG 中的参数化记忆和非参数化记忆分别是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 的检索器和生成器分别采用什么模型？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG-Sequence 和 RAG-Token 的区别是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "RAG-Token 更适合什么类型的问题？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "论文中维基百科的知识源是如何切分的？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "论文用什么索引结构做最大内积搜索？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "RAG 在 TriviaQA 上相比哪类方法有明显提升？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "替换知识索引为什么能更新模型掌握的知识？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "嵌入是把什么映射成什么的技术？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "嵌入向量之间的距离通常用来刻画什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "余弦相似度的取值范围是多少？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "为什么余弦相似度对文本长短不敏感？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "text-embedding-3-small 的输出维度和价格是多少？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "text-embedding-3-large 相比 small 有什么特点？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "第三代嵌入模型的最大输入长度是多少，超长文本怎么办？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "dimensions 参数的作用是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "嵌入在检索之外还有哪些典型应用？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "为什么查询和文档必须使用同一个嵌入模型？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "标准 RAG 的预处理流程包括哪几步？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "为什么嵌入模型常需要配合 BM25 使用？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "BM25 适合检索什么类型的查询？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "传统 RAG 的上下文难题指什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "上下文化嵌入和上下文化 BM25 分别是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "生成块上下文说明时，Anthropic 用什么方法降低成本？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "文中的评估指标 1 减 recall@20 指什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "仅用上下文化嵌入时，top-20 失败率从多少降到多少？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "重排序在流程中处于什么位置，文中用了多少候选和保留数量？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "文中测试出的最佳组合是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 对 LLM 响应的接地是什么意思？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 主要能缓解 LLM 的哪两类问题？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "查询理解的挑战是什么，举例说明？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "RAG 实现中的五类主要挑战有哪些？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "代理式检索由谁负责查询规划？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "经典 RAG 模式适合什么场景？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "混合检索指的是什么，它为什么能提高召回？",
+        "type": "可答",
+        "hit": false,
+        "top1": false
+      },
+      {
+        "question": "页面列出的内容准备支持能力有哪些？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "页面建议在哪些情况下优先选择代理式检索？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "Foundry IQ 是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "AI 能否预测明天的股价？",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "今天中午吃什么比较好？",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "北京今天的天气怎么样？",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "介绍一下猫的饮食习惯。",
+        "type": "无关",
+        "hit": null,
+        "top1": null
+      },
+      {
+        "question": "RAG 的检索器和生成器分别采用什么模型，它们如何联合训练？",
+        "type": "可答",
+        "hit": true,
+        "top1": true
+      },
+      {
+        "question": "Anthropic 的上下文化处理和重排序分别解决什么问题？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "Microsoft 的混合检索和代理式检索各自的作用是什么？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      },
+      {
+        "question": "OpenAI 的余弦相似度与嵌入维度选择之间有什么关系？",
+        "type": "可答",
+        "hit": true,
+        "top1": false
+      }
+    ]
+  }
+}
