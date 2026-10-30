@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -140,3 +141,7 @@ LOGGING = {
         },
     },
 }
+# Celery：broker 使用 Redis 的 1 号库，和缓存（0 号库）分开，避免键名互相干扰
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://127.0.0.1:6379/1")
+CELERY_RESULT_BACKEND = None  # 当前不需要保存任务结果
+CELERY_TASK_ACKS_LATE = True  # 任务执行完才确认，worker 中途崩溃时任务不丢失
