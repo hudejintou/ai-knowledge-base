@@ -202,3 +202,12 @@
   - 未命中耗时受智谱网络延迟影响，单次数据波动大（实验 20 为 3.1–4.9 s，本次为 6.5 s），不宜作精确指标。
   - 本次未重启 Redis 本身，缓存在 Redis 重启后是否保留取决于持久化配置，未验证。
   - 样本仅 1 个问题、单次请求，结论只能说明方向。
+## 实验 22：Celery 异步入库耗时测量（阶段 D，工程实验）
+- 变更：文档入库由同步改为 Celery 异步任务（commit f9cb70e）
+- 环境：本地 Qwen3-Embedding-0.6B（LM Studio）、Redis broker（db 1）、Django shell 内测量（含 ORM 与队列往返，非真实 worker 进程）
+- 结果：
+  - Celery 任务执行（单文档，含本地 embedding + 写库）：0.592 s
+  - POST /api/documents/ 接口响应：HTTP 202，318 ms，响应体 {"id": 26, "status": "pending"}——任务入队即返回，不等待向量计算
+- 结论：接口响应（318 ms）< 任务执行（592 ms），且响应为 pending 状态——验证「入库走 Celery，接口不阻塞」（阶段 D 验收标准③）
+- 排错插曲：Django shell 测量时被 DisallowedHost 拦截（testserver 不在 ALLOWED_HOSTS），属测试环境配置问题，指定 HTTP_HOST=127.0.0.1 后通过，与接口实现无关
+- 局限：单次测量，供数量级参考；0.592 s 含任务封装与写库开销，与纯 embedding 调用耗时不可直接比较
