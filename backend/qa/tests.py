@@ -1,3 +1,4 @@
+import fakeredis
 from unittest.mock import patch
 
 from django.test import TestCase
@@ -5,7 +6,14 @@ from django.test import TestCase
 from qa.models import Document
 from qa.retrieval import retrieve_from_db
 
+
 class AskViewTests(TestCase):
+    def setUp(self):
+        # 接口测试换成 fakeredis，不连真实 Redis，每个测试一个新实例
+        cache_patcher = patch("qa.cache.get_cache_client", return_value=fakeredis.FakeRedis())
+        cache_patcher.start()
+        self.addCleanup(cache_patcher.stop)
+
     # patch 的路径写"被使用的地方"：视图里导入后的名字 qa.views.ask_with_db
     @patch("qa.views.ask_with_db", return_value=(False, "测试回答"))
     def test_answerable(self, _mock):
@@ -21,7 +29,6 @@ class AskViewTests(TestCase):
     def test_empty_question(self):
         resp = self.client.post("/api/ask/", {"question": "  "}, content_type="application/json")
         self.assertEqual(resp.status_code, 400)
-
 class RetrieveFromDbTests(TestCase):
     def setUp(self):
         # 关键：测试数据库是临时的，每个测试开始前都是空表，不会污染 db.sqlite3
