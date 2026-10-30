@@ -1,8 +1,11 @@
+import httpx
+import openai
 import fakeredis
 from unittest.mock import patch
 
 from django.test import TestCase
 
+from qa import cache
 from qa.models import Document
 from qa.retrieval import retrieve_from_db
 
@@ -47,3 +50,54 @@ class RetrieveFromDbTests(TestCase):
         Document.objects.create(content="尚未计算向量的文档", embedding=None)
         hits = retrieve_from_db([1.0, 0.0], top_k=5)
         self.assertNotIn("尚未计算向量的文档", [text for text, _ in hits])
+
+class ErrorHandlingTests(TestCase):
+    def setUp(self):
+        self.fake = fakeredis.FakeRedis()
+        cache_patcher = patch("qa.cache.get_cache_client", return_value=self.fake)
+        cache_patcher.start()
+        self.addCleanup(cache_patcher.stop)
+
+    def _post(self, question="怎么做缓存？"):
+        return self.client.post("/api/ask/", {"question": question}, content_type="application/json")
+
+    @staticmethod
+    def _request():
+        return httpx.Request("POST", "https://open.bigmodel.cn/api/paas/v4/chat/completions")
+
+    def test_auth_error_returns_502(self):
+        err = openai.AuthenticationError("401", response=httpx.Response(401, request=self._request()), body=None)
+        with patch("qa.views.ask_with_db", side_effect=err):
+            resp = self._post()
+        self.assertEqual(resp.status_code, 502)
+        self.assertIn("error", resp.json())
+
+    def test_connection_error_returns_503(self):
+        err = openai.APIConnectionError(request=self._request())
+        with patch("qa.views.ask_with_db", side_effect=err):
+            resp = self._post()
+        self.assertEqual(resp.status_code, 503)
+
+    def test_timeout_returns_503(self):
+        err = openai.APITimeoutError(request=self._request())
+        with patch("qa.views.ask_with_db", side_effect=err):
+            resp = self._post()
+        self.assertEqual(resp.status_code, 503)
+
+    def test_rate_limit_returns_503(self):
+        err = openai.RateLimitError("429", response=httpx.Response(429, request=self._request()), body=None)
+        with patch("qa.views.ask_with_db", side_effect=err):
+            resp = self._post()
+        self.assertEqual(resp.status_code, 503)
+
+    def test_unknown_error_returns_500_without_details(self):
+        with patch("qa.views.ask_with_db", side_effect=RuntimeError("内部细节不应外泄")):
+            resp = self._post()
+        self.assertEqual(resp.status_code, 500)
+        self.assertNotIn("内部细节", resp.json()["error"])
+
+    def test_errors_are_not_cached(self):
+        err = openai.APIConnectionError(request=self._request())
+        with patch("qa.views.ask_with_db", side_effect=err):
+            self._post()
+        self.assertIsNone(self.fake.get(cache.cache_key("怎么做缓存？")))
