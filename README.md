@@ -5,7 +5,7 @@
 ## 功能
 
 - **本地 Embedding 检索**：LM Studio 运行 `text-embedding-qwen3-embedding-0.6b`，余弦相似度检索。
-- **可答性判断**：回答模型（智谱 `glm-4.5-air`）在资料不足时输出 `[NO_ANSWER]`，由代码识别并拒答。
+- **可答性判断**：回答模型（智谱 `glm-5.3-flash`）在资料不足时输出 `[NO_ANSWER]`，由代码识别并拒答。
 - **评估体系**：46 题评估集（EVAL_SET 36 题 + HOLDOUT_SET 10 题），支持多次运行统计稳定性。
 
 ## 环境要求
@@ -41,6 +41,18 @@ python -m rag.chat
 
 - `怎么做缓存？`：会给出基于资料的回答。
 - `今天股市怎么样？`：会显示 `[拒答]`。
+
+## Docker 启动（可选）
+
+一条命令启动 Redis + Django（web）+ Celery worker 全栈：
+
+```bash
+docker compose up --build
+```
+
+- 启动前确认项目根目录有 `.env`（含 `ZHIPU_API_KEY`），会以环境变量注入容器，不进镜像。
+- **LM Studio 需开启局域网访问**（设置里勾选 Serve on Local Network）：容器通过 `host.docker.internal:1234` 访问宿主机的 LM Studio，它只监听 `127.0.0.1` 时容器内连不上。
+- 启动后 `web` 会自动执行数据库迁移，接口在 `http://localhost:8000/api/ask/`。
 
 ## 运行评估
 

@@ -21,6 +21,10 @@ import numpy as np
 from openai import OpenAI
 from rag.corpus import DOCS  # 改为包内完整路径，从项目根目录运行时 Python 才能找到 rag 包
 
+# 模型名、拒答标记与拒答 Prompt 的单一来源：backend/qa/config.py。
+# rag_v1 与 backend 的 service/retrieval 共用同一份配置，避免多副本漂移。
+from backend.qa.config import ANSWER_SYSTEM_PROMPT, CHAT_MODEL, NO_ANSWER
+
 
 BASE_URL = os.getenv("LMSTUDIO_BASE_URL", "http://127.0.0.1:1234/v1")
 client = OpenAI(
@@ -31,7 +35,6 @@ chat_client = OpenAI(
     api_key=os.environ["ZHIPU_API_KEY"],
     base_url="https://open.bigmodel.cn/api/paas/v4/",
 )
-CHAT_MODEL = "glm-5.3-flash"
 
 
 
@@ -71,16 +74,7 @@ def retrieve(query, top_k=2):
     indexes = similarities.argsort()[::-1][:top_k]
     return [(DOCS[index], float(similarities[index])) for index in indexes]
 
-NO_ANSWER = "[NO_ANSWER]"
-
-ANSWER_SYSTEM_PROMPT = (
-    "你是严谨的问答助手，只能依据用户提供的资料回答。"
-    "回答前先判断：资料中是否有明确写出问题所问的答案。"
-    "如果资料直接包含答案，用中文简洁作答，不要补充资料之外的事实。"
-    "如果资料只涉及相关主题，但没有直接回答问题，或需要你自行推测、组合推理才能得出结论，"
-    f"必须只输出 {NO_ANSWER}，不要给出推测性的建议。"
-    "如果资料与问题无关，同样只输出 " + NO_ANSWER + "。"
-)
+# NO_ANSWER 与 ANSWER_SYSTEM_PROMPT 已改为从 backend/qa/config.py 导入（文件头部），不再本地定义
 
 def answer_with_judgement(query, top_k=3):
     hits = retrieve(query, top_k=top_k)

@@ -8,9 +8,9 @@
 ## 📍 当前位置
 
 - **当前时间**：2026-10-31
-- **学习阶段**：阶段 D 进行中——Redis 缓存、日志错误处理、Celery 异步入库均已完成并验证；仅余 Docker Compose
+- **学习阶段**：阶段 A、B、C 已完成；阶段 D 工程化全部完成（缓存、日志分级、Celery 异步入库、补算命令、状态查询接口、Docker Compose）；阶段 E 未开始
 - **所在周期**：2026-10 ~ 2027-03（转岗准备周期）
-- **一句话状态**：阶段 B/C 已完成；阶段 D 剩 Docker 一键编排（含 celery worker 与 Redis），完成后即可进入阶段 E 与求职准备。
+- **一句话状态**：A/B/C/D 四个阶段完成，docker-compose up 可一键启动全栈；下一步阶段 E（三选一）与 2027-01 求职准备。
 - **运维注意**：服务进程的 Key 来自启动时的环境（.env 需手动 source，代码不自动加载）；~/.zshrc 仍存旧 Key，建议更新或清掉。
 
 ---
@@ -29,7 +29,7 @@
 - [x] Document 模型：知识库从 corpus.py 迁到数据库表（2026-10-21 晚：迁移 0001，load_corpus / embed_documents 管理命令，20 条入库含向量与模型名）
 - [x] 接口测试（2026-10-21 晚：可答 / 拒答 / 空问题 3 个，mock 模型调用，测试通过）
 - [x] 解耦：`backend/qa/config.py` 集中配置（2026-10-22，commit a2d7435）；智谱 401 随配置统一解决
-- [x] Prompt 漂移修复（2026-10-26 晚：config.py 的 ANSWER_SYSTEM_PROMPT 已与 rag_v1.py 严格版逐字同步，接口与评估现在用同一份 Prompt）
+- [x] Prompt 漂移修复并收敛为单一来源（2026-10-26 同步内容，2026-10-31 完成代码收敛：rag_v1.py 删除本地定义，改为从 backend/qa/config.py 导入 ANSWER_SYSTEM_PROMPT/NO_ANSWER/CHAT_MODEL；新增 backend/__init__.py；34 个测试回归通过）
 - [x] 端到端 curl 三场景回归（2026-10-26：空问题 400 ✅ / 可答 200 + refused=false ✅ / 拒答 200 + refused=true ✅；**曾复现 401，根因是服务进程读了 ~/.zshrc 里的旧 Key，用 .env 重启后通过**）
 
 **验收标准**：① POST /api/ask/ 返回带引用回答，拒答有明确接口语义（✅）；② Document 表增删改后无需改代码即可被检索（✅）；③ 测试覆盖可答/拒答/异常输入（✅）。
@@ -41,13 +41,15 @@
 
 **验收标准**：① EXPERIMENTS.md 新增 ≥2 条检索类实验（✅ 8 条）；② top_k-拒答率对照数据（✅ 1/2/3 梯度 + RUNS=3）；③ 结论落实——**默认候选：块大小 400、重叠 50、top_k=3，为候选值未在代码中固定**，待更大规模验证后定稿；结论仅适用于本语料（24 段、48 题、单次运行、自定判定）。
 
-### 阶段 D：工程化（2026-11 下旬）【必做】⏳ 进行中（仅余 Docker）
+### 阶段 D：工程化（2026-11 下旬）【必做】✅ 全部完成（2026-10-31）
 - [x] Redis 缓存相同问题回答（5108acd fakeredis → e151eba 真实 Redis；实验 20/21：命中毫秒级，快约三个数量级）
-- [x] Celery 异步文档入库（e67ef98 + f9cb70e，2026-10-31：embed_document_task 幂等 + 瞬时错误重试；POST /api/documents/ 202 即返回，broker 故障 503 保留文档；实验 22 验证接口不阻塞）
-- [x] Docker + docker-compose 一键启动（需编排 runserver + celery worker + Redis；注意容器内访问宿主机 LM Studio 用 host.docker.internal）
-- [x] 日志与错误处理（b3d54ea）
+- [x] Celery 异步文档入库（e67ef98 + f9cb70e：embed_document_task 幂等 + 瞬时错误重试；POST /api/documents/ 202 即返回，broker 故障 503 保留文档；实验 22：接口 202 响应 318ms < 任务执行 592ms，不阻塞）
+- [x] 重试耗尽路径验证 + backfill_embeddings 补算命令（实验 23：LM Studio 宕机 → 重试 4 次耗尽 → embedding=NULL → dry-run 定位 → 恢复后补算成功）
+- [x] 文档入库后清空问答缓存（ba88da5：clear_answer_cache，避免返回过时答案）
+- [x] GET /api/documents/<id>/ 文档入库状态查询接口（b3d4fbf）
+- [x] Docker + docker-compose 一键启动（d8fec5b：Redis + web + worker 三服务编排，healthcheck、共享 SQLite 卷、host.docker.internal + host-gateway；实验 24：容器化部署下未命中耗时实测）
 
-**验收标准**：① docker-compose up 一条命令起全栈（⏳ 唯一未完成）；② 缓存前后耗时对比（✅ 实验 20/21）；③ 入库走 Celery 不阻塞接口（✅ 实验 22：接口 202 响应 318ms < 任务执行 592ms）。
+**验收标准**：① docker-compose up 一条命令起全栈（✅ 实验 24）；② 缓存前后耗时对比（✅ 实验 20/21）；③ 入库走 Celery 不阻塞接口（✅ 实验 22）。
 
 ### 阶段 E：扩展（2026-12，只选做一项）【选做】
 - [ ] RAG + Function Calling 工具 / 轻量 Agent / 云端 vs 本地模型对比（三选一）
@@ -57,10 +59,10 @@
 ### 实验类型清单（EXPERIMENTS.md 记录规范）
 | 类型 | 内容 | 状态 |
 |------|------|------|
-| 检索实验 | Embedding 对比、前缀、切块大小、top_k | 基线已做；阶段 C 继续 |
-| 拒答实验 | 阈值、模型判断、Prompt 对照 | 实验 1~5 完成；C 复核 |
-| 稳定性实验 | 同题多次运行一致率 | 实验 7~9 完成；D 复测 |
-| 工程实验 | 缓存/异步前后耗时 | 阶段 D |
+| 检索实验 | Embedding 对比、前缀、切块大小、top_k | ✅ 实验 1~3、12~19 |
+| 拒答实验 | 阈值、模型判断、Prompt 对照 | ✅ 实验 4~5、13 |
+| 稳定性实验 | 同题多次运行一致率 | ✅ 实验 7~9、16 |
+| 工程实验 | 缓存/异步/重试/容器化耗时 | ✅ 实验 20~24 |
 | 模型实验 | 云端 vs 本地质量对比 | 阶段 E |
 
 ---
