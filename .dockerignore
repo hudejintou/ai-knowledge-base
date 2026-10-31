@@ -1,0 +1,11 @@
+# 不进入镜像构建上下文的内容
+.env
+.git
+**/__pycache__
+**/*.pyc
+backend/db.sqlite3
+evals/runs
+docs
+experiments
+.idea
+.venv

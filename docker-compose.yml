@@ -1,0 +1,65 @@
+# 一条命令启动：Redis + Django（web）+ Celery worker
+services:
+  # 缓存与 Celery broker 共用的 Redis。不映射宿主机端口，避免和 brew 安装的 Redis 冲突
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      # 健康检查：redis-cli ping 成功才算就绪，web 和 worker 据此等待
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 5
+
+  # Django 网站服务：启动前先执行数据库迁移，再启动 gunicorn
+  web:
+    build: .
+    # 从项目根目录的 .env 读取 ZHIPU_API_KEY 等变量（只在运行时注入，不进镜像）
+    env_file: .env
+    environment:
+      DJANGO_DEBUG: "1"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
+      # SQLite 文件放在共享卷里，让 web 和 worker 读写同一个数据库
+      DJANGO_DB_PATH: /app/data/db.sqlite3
+      # 容器内用服务名 redis 访问，不能用 127.0.0.1
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      # 容器访问宿主机的 LM Studio 要用 host.docker.internal
+      LMSTUDIO_BASE_URL: http://host.docker.internal:1234/v1
+    command: sh -c "python manage.py migrate --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - db-data:/app/data
+    depends_on:
+      redis:
+        condition: service_healthy
+    extra_hosts:
+      # Linux 上 host.docker.internal 默认不存在，这里补上；macOS 的 Docker Desktop 本身支持
+      - "host.docker.internal:host-gateway"
+
+  # Celery worker：执行文档向量计算任务。不负责迁移，依赖 web 先完成迁移
+  worker:
+    build: .
+    env_file: .env
+    environment:
+      DJANGO_DEBUG: "1"
+      DJANGO_DB_PATH: /app/data/db.sqlite3
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      LMSTUDIO_BASE_URL: http://host.docker.internal:1234/v1
+    # solo 池：单进程执行任务，与前面本机开发的方式一致，先保证跑通
+    command: celery -A config worker -l info --pool=solo
+    volumes:
+      - db-data:/app/data
+    depends_on:
+      redis:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  # Redis 数据卷：重启容器后缓存和队列保留
+  redis-data:
+  # 数据库卷：web 与 worker 共享同一个 SQLite 文件
+  db-data:

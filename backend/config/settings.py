@@ -20,14 +20,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_(a)$5_v1z0)d0bh41)_px$_dwdgv9b1$bw6cjt@=$jz(6(k=g'
+# 1. SECRET_KEY：优先读环境变量，没有时使用开发默认值
+SECRET_KEY = os.getenv(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-_(a)$5_v1z0)d0bh41)_px$_dwdgv9b1$bw6cjt@=$jz(6(k=g',
+)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# 2. DEBUG：由环境变量控制，默认开启，保持本机开发行为不变
+DEBUG = os.getenv('DJANGO_DEBUG', '1') == '1'
 
-ALLOWED_HOSTS = []
-
+# 3. ALLOWED_HOSTS：允许访问的主机名，多个用逗号分隔
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Application definition
 
@@ -78,7 +81,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 默认仍是 backend/db.sqlite3；容器中通过 DJANGO_DB_PATH 指向共享卷
+        'NAME': os.getenv('DJANGO_DB_PATH', BASE_DIR / 'db.sqlite3'),
     }
 }
 
