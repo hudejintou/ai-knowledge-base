@@ -7,6 +7,7 @@ from openai import OpenAI
 
 from qa.config import EMB_MODEL, LMSTUDIO_BASE_URL
 from qa.models import Document
+from qa.cache import clear_answer_cache
 
 logger = logging.getLogger(__name__)
 
@@ -50,5 +51,7 @@ def embed_document_task(doc_id):
     doc.embedding_model = EMB_MODEL
     doc.save(update_fields=["embedding", "embedding_model", "updated_at"])
 
-    logger.info("文档 %s 向量计算完成", doc_id)
+    # 新文档已可被检索，之前的问答缓存可能已经过时，全部清空
+    cleared = clear_answer_cache()
+    logger.info("文档 %s 向量计算完成，已清除 %s 条问答缓存", doc_id, cleared)
     return doc_id

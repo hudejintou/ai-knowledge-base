@@ -70,3 +70,12 @@ class EmbedDocumentTaskTests(TestCase):
         # 确认重试参数确实挂在任务上，防止以后改动时意外丢失
         self.assertEqual(embed_document_task.max_retries, 3)
         self.assertTrue(embed_document_task.retry_backoff)
+    @patch("qa.tasks.clear_answer_cache", return_value=3)
+    @patch("qa.tasks._embed_client")
+    def test_task_clears_answer_cache_after_embedding(self, mock_client, mock_clear):
+        mock_client.embeddings.create.return_value = MagicMock(
+            data=[MagicMock(embedding=[0.1, 0.2])]
+        )
+        embed_document_task(self.doc.id)
+        # 写入新向量后必须清缓存
+        mock_clear.assert_called_once()

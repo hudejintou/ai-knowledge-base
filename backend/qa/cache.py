@@ -76,3 +76,24 @@ def set_cached_answer(question, refused, text):
         get_cache_client().set(cache_key(question), payload, ex=CACHE_TTL)
     except redis.RedisError as exc:
         logger.warning("缓存写入失败，本次结果未缓存: %s", exc)
+def clear_answer_cache():
+    """删除所有问答缓存，返回删除的条数。
+
+    作用：新文档入库后调用，让旧答案不再被返回。
+    实现细节：
+    - 用 scan_iter 逐个遍历，而不是 KEYS 命令。KEYS 会一次性扫描整个库并阻塞 Redis，
+      数据多时会拖慢其他请求；SCAN 分批进行，更安全。
+    - 只匹配 KEY_PREFIX 开头的键，不会误删 Celery（1 号库）或其他业务键。
+    - Redis 出错时只记日志并返回 0：清理失败不应影响入库任务本身，
+      旧缓存最多保留到 TTL 过期。
+    """
+    try:
+        client = get_cache_client()
+        deleted = 0
+        for key in client.scan_iter(match=KEY_PREFIX + "*", count=500):
+            client.delete(key)
+            deleted += 1
+        return deleted
+    except redis.RedisError as exc:
+        logger.warning("清空问答缓存失败，旧答案将保留至 TTL 过期: %s", exc)
+        return 0
