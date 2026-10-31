@@ -43,3 +43,35 @@ class DocumentCreateView(APIView):
             {"id": doc.id, "status": "pending"},
             status=status.HTTP_202_ACCEPTED,
         )
+class DocumentDetailView(APIView):
+    """GET /api/documents/<id>/
+
+    查询单条文档的入库状态，不返回正文和向量，只返回状态信息。
+
+    响应：
+    - 200：找到文档，返回 {"id", "status", "content_length"}
+      - status 为 "ready"：已有向量，可以被检索
+      - status 为 "pending"：还没有向量（排队中，或任务失败后尚未补算）
+    - 404：文档不存在
+
+    局限：目前只区分 ready 和 pending。任务重试耗尽后，文档同样显示 pending，
+    无法和"仍在排队"区分。要区分需要单独记录任务状态，留到以后再做。
+    """
+
+    def get(self, request, doc_id):
+        # first() 找不到时返回 None，而不是抛异常，便于统一返回 404
+        doc = Document.objects.filter(id=doc_id).first()
+        if doc is None:
+            return Response({"error": "文档不存在"}, status=status.HTTP_404_NOT_FOUND)
+
+        # 向量为空即视为 pending；有向量即 ready。状态由数据推导，不另存一个字段
+        state = "pending" if doc.embedding is None else "ready"
+        return Response(
+            {
+                "id": doc.id,
+                "status": state,
+                # 只返回正文长度，避免接口响应过大，也避免无意间暴露文档内容
+                "content_length": len(doc.content),
+            },
+            status=status.HTTP_200_OK,
+        )

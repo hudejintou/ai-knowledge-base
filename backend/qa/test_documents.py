@@ -79,3 +79,33 @@ class EmbedDocumentTaskTests(TestCase):
         embed_document_task(self.doc.id)
         # 写入新向量后必须清缓存
         mock_clear.assert_called_once()
+class DocumentDetailViewTests(TestCase):
+    """测试 GET /api/documents/<id>/ 的三种情况：待处理、已完成、不存在。"""
+
+    def test_pending_document_returns_pending(self):
+        doc = Document.objects.create(content="还没有向量的文档")  # embedding 默认为 None
+        resp = self.client.get(f"/api/documents/{doc.id}/")
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.json(), {
+            "id": doc.id,
+            "status": "pending",
+            "content_length": len("还没有向量的文档"),
+        })
+
+    def test_ready_document_returns_ready(self):
+        doc = Document.objects.create(content="已有向量", embedding=[0.1, 0.2])
+        resp = self.client.get(f"/api/documents/{doc.id}/")
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.json()["status"], "ready")
+
+    def test_missing_document_returns_404(self):
+        resp = self.client.get("/api/documents/999999/")
+        self.assertEqual(resp.status_code, 404)
+        self.assertIn("error", resp.json())
+
+    def test_response_does_not_leak_content_or_embedding(self):
+        # 响应里不应出现正文或向量字段
+        doc = Document.objects.create(content="秘密正文", embedding=[0.5])
+        body = self.client.get(f"/api/documents/{doc.id}/").json()
+        self.assertNotIn("content", body)
+        self.assertNotIn("embedding", body)
