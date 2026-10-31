@@ -211,3 +211,20 @@
 - 结论：接口响应（318 ms）< 任务执行（592 ms），且响应为 pending 状态——验证「入库走 Celery，接口不阻塞」（阶段 D 验收标准③）
 - 排错插曲：Django shell 测量时被 DisallowedHost 拦截（testserver 不在 ALLOWED_HOSTS），属测试环境配置问题，指定 HTTP_HOST=127.0.0.1 后通过，与接口实现无关
 - 局限：单次测量，供数量级参考；0.592 s 含任务封装与写库开销，与纯 embedding 调用耗时不可直接比较
+## 实验 23：Celery 重试耗尽路径验证与补算（阶段 D，工程实验）
+- 变量：入库时 LM Studio 不可用（连接失败），其余条件不变
+- 配置：autoretry_for=(APIConnectionError, APITimeoutError, RateLimitError)，retry_backoff=True，retry_backoff_max=60，retry_jitter=True，max_retries=3
+- 过程：
+  - 关闭 LM Studio（/v1/models 无响应），提交文档 30，接口返回 202
+  - worker 中同一 task id 共接收 4 次（首次 + 3 次重试），最终失败，错误为 APIConnectionError
+  - 三次 Retry in 均为 0s：jitter 随机取值接近 0，未观察到指数退避
+  - 每次 Celery 尝试内，openai SDK 另有 2 次内部重试
+- 故障后状态：worker 失败后、补算前，执行 backfill_embeddings --dry-run 列出 [30]；同时 llen celery = 0，说明任务已被消费而非积压。即文档 30 为 embedding=NULL，直接观察到
+- 补算：重启 LM Studio 后运行 backfill_embeddings，任务 0.69 秒完成，日志显示 文档 30 向量计算完成
+- 补算后状态：dry-run 输出"没有需要补算向量的文档"；shell 检查 embedding is None 为 False
+- 结论：
+  - 连接类错误能被自动重试，重试耗尽后文档保留为空向量，补算命令可以找回并完成
+  - 鉴权错误不在重试列表中，设计上直接失败，本次未验证
+- 注意：
+  - 样本为 1 条文档、1 次故障，不代表多故障并发的表现
+  - jitter 使退避间隔不可观测，指数退避未经本次实验验证
