@@ -18,7 +18,7 @@
 - **待办（阶段 D）**：
   - [x] Redis 缓存相同问题回答（实验 20/21）
   - [x] Celery 异步文档入库（f9cb70e + 实验 22）
-  - [ ] Docker + docker-compose 一键启动（编排 runserver + worker + Redis；容器内访问宿主机 LM Studio 需 host.docker.internal）
+  - [x] Docker + docker-compose 一键启动（编排 runserver + worker + Redis；容器内访问宿主机 LM Studio 需 host.docker.internal）
   - [x] 日志与错误处理（b3d54ea）
 - **遗留（阶段 B/C 带过来）**：
   - [x] Prompt 漂移修复（2026-10-26 晚：config.py 已与 rag_v1.py 严格版同步）

@@ -44,7 +44,7 @@
 ### 阶段 D：工程化（2026-11 下旬）【必做】⏳ 进行中（仅余 Docker）
 - [x] Redis 缓存相同问题回答（5108acd fakeredis → e151eba 真实 Redis；实验 20/21：命中毫秒级，快约三个数量级）
 - [x] Celery 异步文档入库（e67ef98 + f9cb70e，2026-10-31：embed_document_task 幂等 + 瞬时错误重试；POST /api/documents/ 202 即返回，broker 故障 503 保留文档；实验 22 验证接口不阻塞）
-- [ ] Docker + docker-compose 一键启动（需编排 runserver + celery worker + Redis；注意容器内访问宿主机 LM Studio 用 host.docker.internal）
+- [x] Docker + docker-compose 一键启动（需编排 runserver + celery worker + Redis；注意容器内访问宿主机 LM Studio 用 host.docker.internal）
 - [x] 日志与错误处理（b3d54ea）
 
 **验收标准**：① docker-compose up 一条命令起全栈（⏳ 唯一未完成）；② 缓存前后耗时对比（✅ 实验 20/21）；③ 入库走 Celery 不阻塞接口（✅ 实验 22：接口 202 响应 318ms < 任务执行 592ms）。
