@@ -5,19 +5,21 @@ from openai import OpenAI
 from qa.retrieval import retrieve_from_db
 from qa.config import CHAT_MODEL, EMB_MODEL, NO_ANSWER, ANSWER_SYSTEM_PROMPT, LMSTUDIO_BASE_URL
 
-# 本地 embedding 客户端：与 rag_v1.py 使用同一个 LM Studio 服务和模型
+# 本地 embedding：LM Studio 在本机，正常应在 1 秒内返回，超时设为 10 秒
 embed_client = OpenAI(
     api_key=os.getenv("LMSTUDIO_API_KEY", "lm-studio"),
     base_url=LMSTUDIO_BASE_URL,
+    timeout=10,
+    max_retries=1,
 )
 
-# 云端回答客户端：智谱。Key 从环境变量读取，不写进代码
+# 云端回答：单次调用最多等 20 秒，失败最多重试 1 次
 chat_client = OpenAI(
     api_key=os.environ["ZHIPU_API_KEY"],
     base_url="https://open.bigmodel.cn/api/paas/v4/",
+    timeout=20,
+    max_retries=1,
 )
-# 注意：这里复制了 rag_v1.py 的模型名和 Prompt，需与其保持一致。
-
 
 def embed_query(text):
     """计算单条问题的向量。这一步需要 LM Studio 在运行。"""

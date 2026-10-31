@@ -1,3 +1,14 @@
+"""问答接口 POST /api/ask/。
+
+流程：校验参数 -> 查缓存 -> 未命中则调用工具版问答 -> 写缓存 -> 返回。
+响应：
+- 200：{"refused": bool, "answer": str|null, "sources": [{"n", "text"}]}
+- 400：问题为空
+- 502：上游鉴权失败（智谱 Key 错误）或上游返回错误
+- 503：上游不可达、超时或限流
+- 500：未预期的内部错误（只返回通用信息，完整堆栈写入日志）
+"""
+
 import logging
 
 import openai
@@ -5,14 +16,14 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from qa.agent import ask_with_tools
 from qa.cache import get_cached_answer, set_cached_answer
-from qa.service import ask_with_db
 
 logger = logging.getLogger(__name__)
 
 
 def _error(http_status, message):
-    """统一的错误响应格式，和 400 的格式保持一致：{"error": "..."}"""
+    """统一的错误响应格式：{"error": "..."}"""
     return Response({"error": message}, status=http_status)
 
 
@@ -24,24 +35,23 @@ class AskView(APIView):
         if not question:
             return _error(status.HTTP_400_BAD_REQUEST, "question 不能为空")
 
-        cached = get_cached_answer(question)
-        if cached is not None:
-            refused, text = cached
-        else:
+        # 先查缓存：命中则不调用模型
+        result = get_cached_answer(question)
+        if result is None:
             try:
-                refused, text = ask_with_db(question)
+                result = ask_with_tools(question)
             # 注意顺序：子类必须写在父类前面。
-            # AuthenticationError 和 RateLimitError 都是 APIStatusError 的子类；
+            # AuthenticationError、RateLimitError 都是 APIStatusError 的子类；
             # APITimeoutError 是 APIConnectionError 的子类。
             except openai.AuthenticationError:
                 # 只记录类型和提示，不记录异常内容，避免 Key 误入日志
-                logger.error("上游模型鉴权失败（401），请检查服务进程的 ZHIPU_API_KEY 是否已加载")
+                logger.error("上游模型鉴权失败（401），请检查服务进程的 ZHIPU_API_KEY")
                 return _error(status.HTTP_502_BAD_GATEWAY, "上游模型鉴权失败，请检查服务配置")
             except openai.APITimeoutError:
                 logger.error("上游服务请求超时")
                 return _error(status.HTTP_503_SERVICE_UNAVAILABLE, "上游服务响应超时，请稍后重试")
             except openai.APIConnectionError:
-                logger.error("无法连接上游服务（检查 LM Studio 是否启动，或网络是否可用）")
+                logger.error("无法连接上游服务（检查 LM Studio 或网络）")
                 return _error(status.HTTP_503_SERVICE_UNAVAILABLE, "上游服务暂时不可用")
             except openai.RateLimitError:
                 logger.error("上游服务限流（429）")
@@ -54,10 +64,15 @@ class AskView(APIView):
                 logger.exception("问答接口发生未预期的错误")
                 return _error(status.HTTP_500_INTERNAL_SERVER_ERROR, "服务内部错误")
 
-            # 只有成功时才写缓存；错误结果不缓存
-            set_cached_answer(question, refused, text)
+            # 只有成功时才写缓存，错误结果不缓存
+            set_cached_answer(question, result)
 
+        refused = result["refused"]
         return Response(
-            {"refused": refused, "answer": None if refused else text},
+            {
+                "refused": refused,
+                "answer": None if refused else result["answer"],
+                "sources": result["sources"],
+            },
             status=status.HTTP_200_OK,
         )

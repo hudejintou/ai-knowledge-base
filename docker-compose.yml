@@ -26,7 +26,7 @@ services:
       CELERY_BROKER_URL: redis://redis:6379/1
       # 容器访问宿主机的 LM Studio 要用 host.docker.internal
       LMSTUDIO_BASE_URL: http://host.docker.internal:1234/v1
-    command: sh -c "python manage.py migrate --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    command: sh -c "python manage.py migrate --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000 --timeout 180"
     ports:
       - "8000:8000"
     volumes:
