@@ -41,6 +41,6 @@ TOOL_SYSTEM_PROMPT = (
 # ===== 问答模式开关 =====
 # tools：模型自主决定是否检索（工具调用流程）；baseline：固定检索一次后作答
 # 未识别的取值一律回退到 baseline，避免拼写错误导致行为不明
-QA_MODE = os.getenv("QA_MODE", "baseline")
+QA_MODE = os.getenv("QA_MODE", "tools")
 if QA_MODE not in ("tools", "baseline"):
-    QA_MODE = "baseline"
+    QA_MODE = "tools"

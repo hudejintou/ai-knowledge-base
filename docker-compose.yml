@@ -26,6 +26,7 @@ services:
       CELERY_BROKER_URL: redis://redis:6379/1
       # 容器访问宿主机的 LM Studio 要用 host.docker.internal
       LMSTUDIO_BASE_URL: http://host.docker.internal:1234/v1
+      QA_MODE: ${QA_MODE:-tools}
     command: sh -c "python manage.py migrate --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000 --timeout 180"
     ports:
       - "8000:8000"
@@ -48,6 +49,7 @@ services:
       REDIS_URL: redis://redis:6379/0
       CELERY_BROKER_URL: redis://redis:6379/1
       LMSTUDIO_BASE_URL: http://host.docker.internal:1234/v1
+      QA_MODE: ${QA_MODE:-tools}
     # solo 池：单进程执行任务，与前面本机开发的方式一致，先保证跑通
     command: celery -A config worker -l info --pool=solo
     volumes:
