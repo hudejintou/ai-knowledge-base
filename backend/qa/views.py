@@ -17,10 +17,19 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from qa.agent import ask_with_tools
+from qa.config import QA_MODE
+from qa.service import ask_with_db
 from qa.cache import get_cached_answer, set_cached_answer
 
 logger = logging.getLogger(__name__)
 
+def _run_mode(question):
+    """按 QA_MODE 选择流程，统一返回 {"refused", "answer", "sources"}。"""
+    if QA_MODE == "tools":
+        return ask_with_tools(question)
+    refused, text = ask_with_db(question)
+    # 基线流程返回的是 (refused, text)，没有引用信息，sources 为空
+    return {"refused": refused, "answer": text, "sources": []}
 
 def _error(http_status, message):
     """统一的错误响应格式：{"error": "..."}"""
@@ -39,7 +48,7 @@ class AskView(APIView):
         result = get_cached_answer(question)
         if result is None:
             try:
-                result = ask_with_tools(question)
+                result = _run_mode(question)
             # 注意顺序：子类必须写在父类前面。
             # AuthenticationError、RateLimitError 都是 APIStatusError 的子类；
             # APITimeoutError 是 APIConnectionError 的子类。

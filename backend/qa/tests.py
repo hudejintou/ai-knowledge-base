@@ -14,6 +14,11 @@ class AskViewTests(TestCase):
         cache_patcher.start()
         self.addCleanup(cache_patcher.stop)
 
+        # 默认固定为工具模式；需要基线模式的测试用方法级 @patch 覆盖
+        mode_patcher = patch("qa.views.QA_MODE", "tools")
+        mode_patcher.start()
+        self.addCleanup(mode_patcher.stop)
+
     # patch 的路径写"被使用的地方"：视图里导入后的名字 qa.views.ask_with_tools
     @patch("qa.views.ask_with_tools", return_value={
         "refused": False,
@@ -41,7 +46,11 @@ class AskViewTests(TestCase):
     def test_empty_question(self):
         resp = self.client.post("/api/ask/", {"question": "  "}, content_type="application/json")
         self.assertEqual(resp.status_code, 400)
-
+    @patch("qa.views.QA_MODE", "baseline")
+    @patch("qa.views.ask_with_db", return_value=(False, "基线回答"))
+    def test_baseline_mode_dispatch(self, _mock):
+        resp = self.client.post("/api/ask/", {"question": "怎么做缓存？"}, content_type="application/json")
+        self.assertEqual(resp.json(), {"refused": False, "answer": "基线回答", "sources": []})
 
 class RetrieveFromDbTests(TestCase):
     def setUp(self):

@@ -38,3 +38,9 @@ TOOL_SYSTEM_PROMPT = (
     "资料中没有直接写出问题答案时，只输出 " + NO_ANSWER + "。"
     "回答时用中文简洁作答，并在引用某段资料的句末标注其编号，如 [1]。"
 )
+# ===== 问答模式开关 =====
+# tools：模型自主决定是否检索（工具调用流程）；baseline：固定检索一次后作答
+# 未识别的取值一律回退到 baseline，避免拼写错误导致行为不明
+QA_MODE = os.getenv("QA_MODE", "baseline")
+if QA_MODE not in ("tools", "baseline"):
+    QA_MODE = "baseline"

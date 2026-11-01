@@ -45,10 +45,10 @@ def get_cache_client():
 
 
 def cache_key(question):
-    """问题 -> Redis key。问题要先 strip，否则前后空格会产生不同 key。"""
-    digest = hashlib.sha256(question.encode("utf-8")).hexdigest()
+    """问题 + 模式 -> Redis key。模式不同，答案可能不同，必须分开缓存。"""
+    from qa.config import QA_MODE  # 局部导入，避免循环依赖
+    digest = hashlib.sha256(f"{QA_MODE}|{question}".encode("utf-8")).hexdigest()
     return KEY_PREFIX + digest
-
 
 def get_cached_answer(question):
     """命中返回完整结果 dict；未命中、Redis 出错或旧格式数据返回 None。"""
