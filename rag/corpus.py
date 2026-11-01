@@ -79,3 +79,34 @@ HOLDOUT_SET = [
     {"question": "Django 怎么部署到 Nginx？", "relevant": []},
     {"question": "Docker 怎么限制容器内存？", "relevant": []},
 ]
+# 多跳与间接说法题集：冻结后不得根据结果修改。
+# relevant：回答所需的全部资料下标（DOCS 中的位置），空列表表示应拒答。
+MULTI_SET = [
+    # 多跳：答案分散在两份资料里
+    {"question": "用 Celery 做定时任务时，消息一般通过什么中间件转发？", "relevant": [3, 4]},
+    {"question": "MySQL 加索引好不好，代价是什么，它用什么数据结构？", "relevant": [11, 12]},
+    {"question": "向量数据库和 PostgreSQL 能不能结合使用？", "relevant": [10, 16]},
+    {"question": "用一个配置文件同时启动多个服务，服务的运行环境是怎么打包的？", "relevant": [9, 8]},
+    {"question": "为了防止模型乱编，除了接入资料还能在提示词里做什么？", "relevant": [18, 13]},
+    # 间接说法：问题用词与资料差异大
+    {"question": "我的网站每次都从数据库读同样的数据，怎么减轻数据库压力？", "relevant": [0]},
+    {"question": "想让 Redis 重启后数据还在，应该怎么做？", "relevant": [1]},
+    {"question": "不想手写 SQL 就能操作数据库，有什么方式？", "relevant": [5]},
+    {"question": "数据库表改了结构，之后怎么同步到真实库？", "relevant": [6]},
+    {"question": "让大模型能查外部系统，它是怎么决定调用哪个工具的？", "relevant": [17]},
+    # 近邻拒答：主题相近但语料没有答案
+    {"question": "用 Kafka 做消息队列和 Celery 相比哪个更好？", "relevant": []},
+    {"question": "Redis 的 Cluster 模式怎么扩容？", "relevant": []},
+    {"question": "帮我写一个 Python 爬虫抓取股票价格", "relevant": []},
+    {"question": "Django 项目怎么接入 Kubernetes 做自动扩缩容？", "relevant": []},
+]
+# ===== 扩充语料（阶段 E 之后）=====
+# 原 DOCS 的 20 条保持不变，评估题集的 relevant 下标依赖它。
+# 扩充语料放在 rag/data/corpus_v3.txt，按空行切段，追加在 DOCS 之后。
+from pathlib import Path as _Path
+
+_EXT_PATH = _Path(__file__).resolve().parent / "data" / "corpus_v3.txt"
+DOCS_EXT = [p.strip() for p in _EXT_PATH.read_text(encoding="utf-8").split("\n\n") if p.strip()]
+
+# 入库使用的完整语料：前 20 条是 DOCS，之后是扩充段落（下标 20 起）
+ALL_DOCS = DOCS + DOCS_EXT
