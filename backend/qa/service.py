@@ -3,7 +3,7 @@ import os
 from openai import OpenAI
 
 from qa.retrieval import retrieve_from_db
-from qa.config import CHAT_MODEL, EMB_MODEL, NO_ANSWER, ANSWER_SYSTEM_PROMPT, LMSTUDIO_BASE_URL
+from qa.config import CHAT_MODEL, EMB_MODEL, NO_ANSWER, ANSWER_SYSTEM_PROMPT, LMSTUDIO_BASE_URL, TOP_K
 
 # 本地 embedding：LM Studio 在本机，正常应在 1 秒内返回，超时设为 10 秒
 embed_client = OpenAI(
@@ -27,7 +27,7 @@ def embed_query(text):
     return response.data[0].embedding
 
 
-def ask_with_db(question, top_k=3):
+def ask_with_db(question, top_k=TOP_K):
     """从数据库检索资料，再让回答模型判断可答性。
 
     返回 (refused, text)，与 rag_v1.answer_with_judgement 的返回结构一致。
