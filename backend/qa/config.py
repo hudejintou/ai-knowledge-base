@@ -44,3 +44,11 @@ TOOL_SYSTEM_PROMPT = (
 QA_MODE = os.getenv("QA_MODE", "tools")
 if QA_MODE not in ("tools", "baseline"):
     QA_MODE = "tools"
+# ===== 文档切块 =====
+# 长文本入库时按字符切块：每块最多 CHUNK_SIZE 字，相邻块重叠 CHUNK_OVERLAP 字，
+# 重叠用于避免关键句恰好落在块边界上被切断。
+# 默认值与实验记录中的候选值一致（400/50），但仍是候选，可用环境变量覆盖。
+CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "400"))
+CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "50"))
+if not 0 <= CHUNK_OVERLAP < CHUNK_SIZE:
+    raise ValueError("CHUNK_OVERLAP 必须满足 0 <= CHUNK_OVERLAP < CHUNK_SIZE")
