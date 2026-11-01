@@ -318,7 +318,7 @@
   - QA_MODE=baseline：env 为 QA_MODE=baseline，同一问题返回 sources 为空
 - 过程记录：
   - 首次切换基线时 web 未生效，原因是 QA_MODE 只写在了 worker 的 environment 中，补到 web 后验证通过
-  - 容器需 --force-recreate 才会应用新的环境变量
+  -   - 改动 docker-compose.yml 之后需要重建容器；仅改 shell 环境变量时 compose 不一定重建，因此切换模式时使用 --force-recreate 强制重建
 - 注意：
   - 决定依据只有 eval 套件一组结果，holdout 与 multi 的回归未纳入决定
   - 工具模式单题耗时明显高于基线（每题约多一次模型调用），成本更高，此处未做系统统计
