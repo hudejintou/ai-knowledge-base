@@ -1,0 +1,767 @@
+{
+  "time": "2026-11-01T05:56:14",
+  "runs_per_question": 1,
+  "top_k": 1,
+  "by_suite": {
+    "eval": {
+      "questions_x_runs": 36,
+      "tool_refusal_accuracy": 1.0,
+      "baseline_refusal_accuracy": 1.0,
+      "tool_coverage": 1.0,
+      "baseline_coverage": 1.0
+    },
+    "holdout": {
+      "questions_x_runs": 10,
+      "tool_refusal_accuracy": 0.9,
+      "baseline_refusal_accuracy": 0.9,
+      "tool_coverage": 1.0,
+      "baseline_coverage": 1.0
+    },
+    "multi": {
+      "questions_x_runs": 14,
+      "tool_refusal_accuracy": 0.9286,
+      "baseline_refusal_accuracy": 0.8571,
+      "tool_coverage": 0.85,
+      "baseline_coverage": 0.75
+    }
+  },
+  "results": [
+    {
+      "suite": "eval",
+      "question": "怎么做缓存？",
+      "run": 1,
+      "required": [
+        0
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "Redis 数据怎么持久化？",
+      "run": 1,
+      "required": [
+        1
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "排行榜用 Redis 的哪种数据类型？",
+      "run": 1,
+      "required": [
+        2
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "后台异步跑任务用什么？",
+      "run": 1,
+      "required": [
+        3
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "怎么定时执行任务？",
+      "run": 1,
+      "required": [
+        4
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "Python 怎么操作数据库表？",
+      "run": 1,
+      "required": [
+        5
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "数据库表结构变更怎么同步？",
+      "run": 1,
+      "required": [
+        6
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "怎么做接口的数据校验？",
+      "run": 1,
+      "required": [
+        7
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "怎么把应用和依赖打包？",
+      "run": 1,
+      "required": [
+        8
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "怎样一条命令启动多个服务？",
+      "run": 1,
+      "required": [
+        9
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "能存向量的 PostgreSQL 插件是什么？",
+      "run": 1,
+      "required": [
+        10
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "MySQL 用什么索引结构？",
+      "run": 1,
+      "required": [
+        11
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "给表加索引有什么代价？",
+      "run": 1,
+      "required": [
+        12
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "RAG 解决什么问题？",
+      "run": 1,
+      "required": [
+        13
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "文档切多大比较合适？",
+      "run": 1,
+      "required": [
+        14
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "文本怎么变成可比较的向量？",
+      "run": 1,
+      "required": [
+        15
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "本地小规模实验用哪个向量库？",
+      "run": 1,
+      "required": [
+        16
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "大模型怎么调用外部工具？",
+      "run": 1,
+      "required": [
+        17
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "怎样减少模型编造资料外的内容？",
+      "run": 1,
+      "required": [
+        18
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "Git 变基会有什么影响？",
+      "run": 1,
+      "required": [
+        19
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "eval",
+      "question": "今天股市怎么样？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "明天会下雨吗？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "今天中午吃什么比较好？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "推荐一部好看的电影",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "Redis 集群怎么搭建？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "Redis 主从复制怎么配置？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "Celery 任务失败后怎么重试？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "Django 怎么做用户登录认证？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "Django 怎么配置缓存中间件？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "Docker 怎么把镜像推送到仓库？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "PostgreSQL 怎么做主从备份？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "MySQL 的慢查询怎么排查？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "RAG 的 Reranker 怎么选型？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "Function Calling 怎么做参数校验？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "Git 怎么撤销一次提交？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "eval",
+      "question": "Embedding 模型怎么微调？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "holdout",
+      "question": "Redis 拿来当缓存用时要注意什么？",
+      "run": 1,
+      "required": [
+        0
+      ],
+      "should_refuse": false,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "holdout",
+      "question": "Celery 能帮忙做哪类耗时工作？",
+      "run": 1,
+      "required": [
+        3
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "holdout",
+      "question": "ORM 的作用是什么？",
+      "run": 1,
+      "required": [
+        5
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "holdout",
+      "question": "Docker 镜像和容器的关系是什么？",
+      "run": 1,
+      "required": [
+        8
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "holdout",
+      "question": "文本切块时块大小怎么选？",
+      "run": 1,
+      "required": [
+        14
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "holdout",
+      "question": "大模型怎么获得外部数据的访问能力？",
+      "run": 1,
+      "required": [
+        17
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "holdout",
+      "question": "Redis 怎么做分布式锁？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "holdout",
+      "question": "这周末天气怎么样？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "holdout",
+      "question": "Django 怎么部署到 Nginx？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "holdout",
+      "question": "Docker 怎么限制容器内存？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "multi",
+      "question": "用 Celery 做定时任务时，消息一般通过什么中间件转发？",
+      "run": 1,
+      "required": [
+        3,
+        4
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 0.5,
+      "base_coverage": 0.5
+    },
+    {
+      "suite": "multi",
+      "question": "MySQL 加索引好不好，代价是什么，它用什么数据结构？",
+      "run": 1,
+      "required": [
+        11,
+        12
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": true,
+      "tool_coverage": 1.0,
+      "base_coverage": 0.5
+    },
+    {
+      "suite": "multi",
+      "question": "向量数据库和 PostgreSQL 能不能结合使用？",
+      "run": 1,
+      "required": [
+        10,
+        16
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 0.5,
+      "base_coverage": 0.5
+    },
+    {
+      "suite": "multi",
+      "question": "用一个配置文件同时启动多个服务，服务的运行环境是怎么打包的？",
+      "run": 1,
+      "required": [
+        9,
+        8
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": true,
+      "tool_coverage": 1.0,
+      "base_coverage": 0.5
+    },
+    {
+      "suite": "multi",
+      "question": "为了防止模型乱编，除了接入资料还能在提示词里做什么？",
+      "run": 1,
+      "required": [
+        18,
+        13
+      ],
+      "should_refuse": false,
+      "tool_refused": true,
+      "base_refused": false,
+      "tool_coverage": 0.5,
+      "base_coverage": 0.5
+    },
+    {
+      "suite": "multi",
+      "question": "我的网站每次都从数据库读同样的数据，怎么减轻数据库压力？",
+      "run": 1,
+      "required": [
+        0
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "multi",
+      "question": "想让 Redis 重启后数据还在，应该怎么做？",
+      "run": 1,
+      "required": [
+        1
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "multi",
+      "question": "不想手写 SQL 就能操作数据库，有什么方式？",
+      "run": 1,
+      "required": [
+        5
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "multi",
+      "question": "数据库表改了结构，之后怎么同步到真实库？",
+      "run": 1,
+      "required": [
+        6
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "multi",
+      "question": "让大模型能查外部系统，它是怎么决定调用哪个工具的？",
+      "run": 1,
+      "required": [
+        17
+      ],
+      "should_refuse": false,
+      "tool_refused": false,
+      "base_refused": false,
+      "tool_coverage": 1.0,
+      "base_coverage": 1.0
+    },
+    {
+      "suite": "multi",
+      "question": "用 Kafka 做消息队列和 Celery 相比哪个更好？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "multi",
+      "question": "Redis 的 Cluster 模式怎么扩容？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "multi",
+      "question": "帮我写一个 Python 爬虫抓取股票价格",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    },
+    {
+      "suite": "multi",
+      "question": "Django 项目怎么接入 Kubernetes 做自动扩缩容？",
+      "run": 1,
+      "required": [],
+      "should_refuse": true,
+      "tool_refused": true,
+      "base_refused": true,
+      "tool_coverage": null,
+      "base_coverage": null
+    }
+  ]
+}
