@@ -29,7 +29,11 @@ def _resp(msg):
     return NS(choices=[NS(message=msg)])
 
 
-FAKE_HITS = [("缓存资料A：用 Redis 做缓存", 0.9), ("无关资料B", 0.2)]
+# 检索返回的结构与 search_documents 一致：带 doc_id 的字典
+FAKE_HITS = [
+    {"doc_id": 11, "content": "缓存资料A：用 Redis 做缓存", "score": 0.9},
+    {"doc_id": 12, "content": "无关资料B", "score": 0.2},
+]
 
 
 class AskWithToolsTests(TestCase):
@@ -43,7 +47,7 @@ class AskWithToolsTests(TestCase):
         embed_patcher.start()
         self.addCleanup(embed_patcher.stop)
 
-        search_patcher = patch("qa.agent.retrieve_from_db", return_value=FAKE_HITS)
+        search_patcher = patch("qa.agent.search_documents", return_value=FAKE_HITS)
         search_patcher.start()
         self.addCleanup(search_patcher.stop)
 
@@ -61,8 +65,36 @@ class AskWithToolsTests(TestCase):
 
         self.assertFalse(result["refused"])
         self.assertEqual(result["answer"], "使用 Redis 做缓存 [1]。")
-        # 只返回被引用的资料，无关资料 B 不在结果中
-        self.assertEqual(result["sources"], [{"n": 1, "text": "缓存资料A：用 Redis 做缓存"}])
+        # 只返回被引用的资料，并带上 doc_id；无关资料 B 不在结果中
+        self.assertEqual(result["sources"], [
+            {"n": 1, "doc_id": 11, "text": "缓存资料A：用 Redis 做缓存"},
+        ])
+
+    def test_same_chunk_retrieved_twice_is_deduplicated_by_id(self):
+        # 一轮里两次检索返回相同的块（id 相同）：sources 中只能出现一次
+        self._script(
+            _msg(tool_calls=[_call("缓存", "c1"), _call("缓存怎么做", "c2")]),
+            _msg(content="使用 Redis 做缓存 [1]，无关内容见 [2]。"),
+        )
+        result = ask_with_tools("怎么做缓存？")
+
+        self.assertEqual([s["doc_id"] for s in result["sources"]], [11, 12])
+        self.assertEqual([s["n"] for s in result["sources"]], [1, 2])
+
+    def test_identical_text_with_different_ids_are_kept_separate(self):
+        # 正文相同但 id 不同：是两条记录，必须分别保留，不能因为正文相同被合并
+        same_text_hits = [
+            {"doc_id": 21, "content": "同一段正文", "score": 0.9},
+            {"doc_id": 22, "content": "同一段正文", "score": 0.8},
+        ]
+        with patch("qa.agent.search_documents", return_value=same_text_hits):
+            self._script(
+                _msg(tool_calls=[_call("问题")]),
+                _msg(content="回答 [1][2]"),
+            )
+            result = ask_with_tools("问题")
+
+        self.assertEqual([s["doc_id"] for s in result["sources"]], [21, 22])
 
     def test_no_answer_marker_means_refused(self):
         self._script(

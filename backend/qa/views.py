@@ -2,7 +2,7 @@
 
 流程：校验参数 -> 查缓存 -> 未命中则调用工具版问答 -> 写缓存 -> 返回。
 响应：
-- 200：{"refused": bool, "answer": str|null, "sources": [{"n", "text"}]}
+- 200：{"refused": bool, "answer": str|null, "sources": [{"n", "doc_id", "text"}]}
 - 400：问题为空
 - 502：上游鉴权失败（智谱 Key 错误）或上游返回错误
 - 503：上游不可达、超时或限流

@@ -4,8 +4,7 @@ import fakeredis
 from django.test import TestCase
 
 from qa.models import Document
-from qa.retrieval import retrieve_from_db
-
+from qa.retrieval import retrieve_from_db, search_documents
 
 class AskViewTests(TestCase):
     def setUp(self):
@@ -23,7 +22,7 @@ class AskViewTests(TestCase):
     @patch("qa.views.ask_with_tools", return_value={
         "refused": False,
         "answer": "测试回答",
-        "sources": [{"n": 1, "text": "资料"}],
+        "sources": [{"n": 1, "doc_id": 7, "text": "资料"}],
     })
     def test_answerable(self, _mock):
         resp = self.client.post("/api/ask/", {"question": "怎么做缓存？"}, content_type="application/json")
@@ -31,7 +30,7 @@ class AskViewTests(TestCase):
         self.assertEqual(resp.json(), {
             "refused": False,
             "answer": "测试回答",
-            "sources": [{"n": 1, "text": "资料"}],
+            "sources": [{"n": 1, "doc_id": 7, "text": "资料"}],
         })
 
     @patch("qa.views.ask_with_tools", return_value={
@@ -69,3 +68,10 @@ class RetrieveFromDbTests(TestCase):
         Document.objects.create(content="尚未计算向量的文档", embedding=None)
         hits = retrieve_from_db([1.0, 0.0], top_k=5)
         self.assertNotIn("尚未计算向量的文档", [text for text, _ in hits])
+    def test_search_documents_returns_doc_id(self):
+        # 新接口必须带上块的 id，引用追溯依赖它
+        hits = search_documents([1.0, 0.0], top_k=1)
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(set(hits[0].keys()), {"doc_id", "content", "score"})
+        self.assertEqual(hits[0]["content"], "与问题同向的文档")
+        self.assertIsInstance(hits[0]["doc_id"], int)

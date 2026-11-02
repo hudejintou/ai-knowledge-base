@@ -9,7 +9,7 @@
     {
         "refused": bool,
         "answer": str,
-        "sources": [{"n": 编号, "text": 资料正文}],   # 回答中实际引用的资料，接口返回这个
+        "sources": [{"n": 编号, "doc_id": 块id, "text": 资料正文}],  # 回答中实际引用的资料，接口返回这个
         "retrieved": [资料正文, ...],                  # 所有检索到的资料，仅评估用
         "queries": [检索语句, ...],                    # 模型发出的检索语句，仅评估用
     }
@@ -27,7 +27,7 @@ from qa.config import (
     TOOL_SYSTEM_PROMPT,
     TOP_K,
 )
-from qa.retrieval import retrieve_from_db
+from qa.retrieval import search_documents
 from qa.service import chat_client, embed_query
 
 logger = logging.getLogger(__name__)
@@ -63,7 +63,8 @@ def _chat(messages, with_tools):
 def _run_search(call, sources, queries):
     """执行一次 search_knowledge 调用，返回要回传给模型的文本。
 
-    sources：本次问答累计的资料正文列表，原地追加新资料；
+    sources：本次问答累计的资料列表，元素为 {"doc_id", "text"}。
+             按 doc_id 去重：同一个块被多次检索到时只保留一份，编号保持不变。
     queries：本次问答模型发出的检索语句列表，仅用于评估记录。
     """
     try:
@@ -75,36 +76,48 @@ def _run_search(call, sources, queries):
         return "query 不能为空。"
 
     queries.append(query)
-    hits = retrieve_from_db(embed_query(query), top_k=TOP_K)
+    hits = search_documents(embed_query(query), top_k=TOP_K)
     if not hits:
         return "没有检索到相关资料。"
 
     lines = []
-    for content, _score in hits:
-        if content not in sources:
-            sources.append(content)
-        lines.append(f"[{sources.index(content) + 1}] {content}")
+    for hit in hits:
+        # 关键：按 doc_id 查找是否已有该块，而不是按正文。
+        # 两个正文相同但 id 不同的块是两条记录，应当分别保留
+        index = next(
+            (i for i, s in enumerate(sources) if s["doc_id"] == hit["doc_id"]),
+            None,
+        )
+        if index is None:
+            sources.append({"doc_id": hit["doc_id"], "text": hit["content"]})
+            index = len(sources) - 1
+        # 编号 = 在 sources 中的位置 + 1，模型回答中的 [n] 据此对应到资料
+        lines.append(f"[{index + 1}] {hit['content']}")
     return "\n".join(lines)
 
 
 def _finish(text, sources, queries):
-    """把模型的最终文本整理成返回结构。"""
+    """把模型的最终文本整理成返回结构。
+
+    sources 中只保留回答里真正被引用的块，并保留 doc_id，
+    便于调用方追溯到具体的块。
+    """
     text = (text or "").strip()
     refused = NO_ANSWER in text or not text
-    retrieved = list(sources)
+    # retrieved 仍然只返回正文列表，评估脚本的覆盖率计算依赖它
+    retrieved = [s["text"] for s in sources]
     if refused:
         return {"refused": True, "answer": text, "sources": [],
                 "retrieved": retrieved, "queries": list(queries)}
 
     cited = {int(n) for n in re.findall(r"\[(\d+)\]", text)}
     used = [
-        {"n": i + 1, "text": s}
+        {"n": i + 1, "doc_id": s["doc_id"], "text": s["text"]}
         for i, s in enumerate(sources)
         if (i + 1) in cited
     ]
     return {"refused": False, "answer": text, "sources": used,
             "retrieved": retrieved, "queries": list(queries)}
-
 
 def ask_with_tools(question):
     """工具调用问答主循环。"""
