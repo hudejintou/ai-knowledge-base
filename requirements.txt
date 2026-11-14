@@ -6,3 +6,4 @@ redis==8.1.0
 openai>=1.0
 numpy>=1.26
 gunicorn>=23.0
+packaging>=24.0
