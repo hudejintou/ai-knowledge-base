@@ -14,6 +14,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from rag.corpus import ALL_DOCS, EVAL_SET, HOLDOUT_SET, MULTI_SET
+from rag.blind_set import BLIND_SET
 from django.core.management.base import BaseCommand
 
 from qa.agent import ask_with_tools
@@ -27,14 +29,14 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from rag.corpus import DOCS, EVAL_SET, HOLDOUT_SET, MULTI_SET  # noqa: E402
 
-SUITES = {"eval": EVAL_SET, "holdout": HOLDOUT_SET, "multi": MULTI_SET}
+SUITES = {"eval": EVAL_SET, "holdout": HOLDOUT_SET, "multi": MULTI_SET, "blind": BLIND_SET}
 
 
 def _coverage(required, retrieved_texts):
     """所需资料中被检索到的比例。required 为空时返回 None。"""
     if not required:
         return None
-    hit = sum(1 for i in required if DOCS[i] in retrieved_texts)
+    hit = sum(1 for i in required if ALL_DOCS[i] in retrieved_texts)
     return hit / len(required)
 
 
