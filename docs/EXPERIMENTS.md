@@ -369,7 +369,10 @@
 **文件与哈希（sha256）**
 - 题集：`rag/blind_set.py`，`fa5f98408c72589ddda7d571ee9c9a6277a0a6efb9108b16ecf6d6dfb837c34f`
 - 评估脚本：`backend/qa/management/commands/eval_tools.py`，`a43045392ce45e16048f6e7d0f65f5bdbe7e61ea5773062e64a746b3f01d11af`
-- 覆盖检查脚本：`experiments/check_blind_set.py`，`<cb03df8b7b29bd10baee8bef017e66e27a21257a5ade2acec4ab8b6eaa6ace42>`
+- 覆盖检查脚本：`experiments/check_blind_set.py`，`cb03df8b7b29bd10baee8bef017e66e27a21257a5ade2acec4ab8b6eaa6ace42`
+**运行环境**：运行前执行 `docker compose up -d --build web worker`，并确认容器内 `eval_tools.py`、`blind_set.py` 的 sha256 与上表一致（检查时间：2026-11-19，两项均一致）。
+
+**冻结后的修改**：提交 `4686da5` 仅修正检查脚本哈希的占位符格式，题集、判断标准与哈希值均未变化。
 
 **题集构成**：共 36 题。拒答 7 题；可答 29 题，其中单段 25 题、跨段 4 题。覆盖扩充段下标 20–43 全部 24 段（下标 37、42 已由补充题覆盖）。
 
