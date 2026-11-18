@@ -388,4 +388,6 @@
 
 **运行命令**：`docker compose exec web python manage.py eval_tools --suite blind --runs 3`
 
+**运行尝试 1（中断，结果不纳入统计）**：`eval_tools --suite blind --runs 3`，运行中在基线调用（`ask_with_db`）处出现智谱接口 `APITimeoutError`（20 秒超时，重试 1 次），进程终止，未生成结果 JSON。日志保存为 `blind_run_attempt1_aborted.log`。该次运行中已输出的逐题行不构成完整结果，不用于任何判断。中断前已输出 61 行逐题记录（完整运行应为 108 行，约 57%）。
+
 **结果**：（运行后填写：结果文件名、两种模式的拒答正确率与覆盖率、错题列表。运行前不填任何数字。）
