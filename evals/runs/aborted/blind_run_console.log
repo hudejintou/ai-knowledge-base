@@ -1,0 +1,319 @@
+2026-11-18 16:19:56,887 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:20:02,920 INFO qa.agent: 工具调用第 2 轮：模型请求 1 次检索
+2026-11-18 16:20:08,372 INFO qa.agent: 工具调用第 3 轮：模型请求 1 次检索
+2026-11-18 16:20:08,525 WARNING qa.agent: 达到工具调用轮数上限 3，强制生成回答
+[blind#0] 纯参数化模型有哪两个长期未解决的问题？ 应拒答=False 工具拒答=True 基线拒答=True 工具覆盖=0.0 基线覆盖=0.0 工具query=['纯参数化模型 长期未解决的问题', '参数化模型 知识更新 幻觉 局限性', '纯参数化模型 两大问题']
+2026-11-18 16:20:20,589 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:20:26,563 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#0] 纯参数化模型有哪两个长期未解决的问题？ 应拒答=False 工具拒答=True 基线拒答=True 工具覆盖=0.0 基线覆盖=0.0 工具query=['纯参数化模型 长期未解决的问题']
+2026-11-18 16:20:35,275 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:20:41,180 INFO qa.agent: 工具调用第 2 轮：模型请求 2 次检索
+2026-11-18 16:20:48,591 INFO qa.agent: 工具调用第 3 轮：模型请求 2 次检索
+2026-11-18 16:20:48,816 WARNING qa.agent: 达到工具调用轮数上限 3，强制生成回答
+[blind#0] 纯参数化模型有哪两个长期未解决的问题？ 应拒答=False 工具拒答=False 基线拒答=True 工具覆盖=1.0 基线覆盖=0.0 工具query=['纯参数化模型 两个长期未解决的问题', '纯参数化模型 未能解决 灾难性遗忘 幻觉', '参数化模型 缺陷 局限 知识更新', '纯参数化模型 无法 拓展知识库 修改知识 原因', 'RAG 论文 提出背景 参数化模型 问题 动机']
+2026-11-18 16:21:02,313 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:21:09,485 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#1] RAG 中负责生成语言的那部分记忆是什么形式？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['RAG 负责生成语言的部分 记忆 形式']
+2026-11-18 16:21:19,773 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:21:27,902 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#1] RAG 中负责生成语言的那部分记忆是什么形式？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['RAG 生成语言 记忆 形式']
+2026-11-18 16:21:37,993 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:21:45,790 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#1] RAG 中负责生成语言的那部分记忆是什么形式？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['RAG 中负责生成语言的记忆形式']
+2026-11-18 16:21:56,062 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:22:01,711 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#2] 一个输出序列能否在生成中途切换到另一份检索文档取材？ 应拒答=False 工具拒答=True 基线拒答=False 工具覆盖=0.0 基线覆盖=1.0 工具query=['生成中途切换到另一份检索文档取材']
+2026-11-18 16:22:13,689 INFO qa.agent: 工具调用第 1 轮：模型请求 2 次检索
+2026-11-18 16:22:28,434 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#2] 一个输出序列能否在生成中途切换到另一份检索文档取材？ 应拒答=False 工具拒答=True 基线拒答=False 工具覆盖=0.0 基线覆盖=1.0 工具query=['输出序列 生成中途 切换到另一份检索文档 取材', '生成过程中 检索到的文档 引用来源 是否固定']
+2026-11-18 16:22:39,221 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:22:47,279 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#2] 一个输出序列能否在生成中途切换到另一份检索文档取材？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['输出序列生成中途能否切换到另一份检索文档取材']
+2026-11-18 16:22:58,051 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:23:03,377 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#3] 原论文把维基百科切成多长的段落，文档数量大约多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['维基百科 段落 切分 长度 文档数量']
+2026-11-18 16:23:12,849 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:23:19,306 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#3] 原论文把维基百科切成多长的段落，文档数量大约多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['维基百科 段落长度 文档数量 切分']
+2026-11-18 16:23:28,157 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:23:34,550 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#3] 原论文把维基百科切成多长的段落，文档数量大约多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['原论文 维基百科 切分 段落 长度 文档数量']
+2026-11-18 16:23:42,560 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:23:51,112 INFO qa.agent: 工具调用第 2 轮：模型请求 1 次检索
+2026-11-18 16:23:57,833 INFO qa.agent: 问答完成：共 2 轮工具调用
+[blind#4] 论文在 FEVER 事实核查任务上与强检索流水线的差距是多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['FEVER 事实核查任务 强检索流水线 差距', 'FEVER fact verification retrieval pipeline performance comparison']
+2026-11-18 16:24:05,928 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:24:23,943 INFO qa.agent: 工具调用第 2 轮：模型请求 1 次检索
+2026-11-18 16:24:29,778 INFO qa.agent: 问答完成：共 2 轮工具调用
+[blind#4] 论文在 FEVER 事实核查任务上与强检索流水线的差距是多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['FEVER 事实核查任务 强检索流水线 差距', 'FEVER fact verification performance comparison DPR']
+2026-11-18 16:24:37,895 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:24:44,738 INFO qa.agent: 工具调用第 2 轮：模型请求 1 次检索
+2026-11-18 16:24:51,358 INFO qa.agent: 问答完成：共 2 轮工具调用
+[blind#4] 论文在 FEVER 事实核查任务上与强检索流水线的差距是多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['FEVER 事实核查任务 强检索流水线 差距', 'FEVER fact verification performance comparison dense retrieval pipeline']
+2026-11-18 16:24:59,945 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:25:06,745 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#5] 为什么不必重新训练参数，就能更新模型掌握的知识？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为什么不必重新训练参数就能更新模型掌握的知识']
+2026-11-18 16:25:20,579 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:25:27,122 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#5] 为什么不必重新训练参数，就能更新模型掌握的知识？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为什么不必重新训练参数就能更新模型掌握的知识']
+2026-11-18 16:25:36,649 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:25:43,408 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#5] 为什么不必重新训练参数，就能更新模型掌握的知识？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为什么不必重新训练参数就能更新模型掌握的知识']
+2026-11-18 16:25:51,300 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:25:58,151 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#6] 嵌入的核心用途是度量什么？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['嵌入的核心用途 度量']
+2026-11-18 16:26:06,154 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:26:13,611 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#6] 嵌入的核心用途是度量什么？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['嵌入的核心用途是度量什么']
+2026-11-18 16:26:17,608 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:26:24,268 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#6] 嵌入的核心用途是度量什么？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['嵌入的核心用途 度量 什么']
+2026-11-18 16:26:32,866 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:26:38,069 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#7] 余弦相似度为 0 通常意味着什么？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['余弦相似度为 0 意味着什么']
+2026-11-18 16:26:56,796 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:27:03,687 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#7] 余弦相似度为 0 通常意味着什么？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['余弦相似度为 0 意味着什么']
+2026-11-18 16:27:12,291 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:27:18,099 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#7] 余弦相似度为 0 通常意味着什么？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['余弦相似度为 0 意味着什么']
+2026-11-18 16:27:27,154 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:27:31,810 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#8] text-embedding-3-small 在 MTEB 基准上的得分是多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['text-embedding-3-small MTEB 基准得分']
+2026-11-18 16:27:39,301 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:27:46,208 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#8] text-embedding-3-small 在 MTEB 基准上的得分是多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['text-embedding-3-small MTEB 基准 得分']
+2026-11-18 16:27:53,586 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:28:00,213 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#8] text-embedding-3-small 在 MTEB 基准上的得分是多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['text-embedding-3-small MTEB 基准 得分']
+2026-11-18 16:28:06,227 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:28:11,188 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#9] 把 text-embedding-3-large 截断到 256 维，与哪个模型相比仍然更好？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['text-embedding-3-large 截断 256 维 性能对比']
+2026-11-18 16:28:20,699 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:28:33,494 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#9] 把 text-embedding-3-large 截断到 256 维，与哪个模型相比仍然更好？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['text-embedding-3-large 截断 256 维 对比']
+2026-11-18 16:28:43,312 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:28:49,879 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#9] 把 text-embedding-3-large 截断到 256 维，与哪个模型相比仍然更好？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['text-embedding-3-large 截断到 256 维 与哪个模型相比仍然更好']
+2026-11-18 16:28:58,480 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:29:04,898 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#10] 嵌入的应用中，异常检测指的是什么？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['嵌入的应用 异常检测']
+2026-11-18 16:29:14,352 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:29:18,992 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#10] 嵌入的应用中，异常检测指的是什么？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['嵌入的应用 异常检测']
+2026-11-18 16:29:26,611 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:29:29,304 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#10] 嵌入的应用中，异常检测指的是什么？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['嵌入的应用中 异常检测指的是什么']
+2026-11-18 16:29:38,664 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:29:45,826 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#11] 两个不同嵌入模型生成的向量混用，会造成什么后果？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['不同嵌入模型生成的向量混用后果']
+2026-11-18 16:29:54,598 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:30:01,456 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#11] 两个不同嵌入模型生成的向量混用，会造成什么后果？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['不同嵌入模型生成的向量混用会有什么后果']
+2026-11-18 16:30:11,395 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:30:18,105 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#11] 两个不同嵌入模型生成的向量混用，会造成什么后果？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['两个不同嵌入模型生成的向量混用 会造成什么后果']
+2026-11-18 16:30:26,242 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:30:35,480 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#12] 为什么嵌入模型之外还建议配合 BM25 使用？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为什么建议嵌入模型配合 BM25 使用 混合检索']
+2026-11-18 16:30:52,099 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:31:02,386 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#12] 为什么嵌入模型之外还建议配合 BM25 使用？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为什么嵌入模型之外还建议配合 BM25 使用 混合检索']
+2026-11-18 16:31:10,782 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:31:19,196 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#12] 为什么嵌入模型之外还建议配合 BM25 使用？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为什么嵌入模型之外还建议配合 BM25 使用 混合检索']
+2026-11-18 16:31:30,659 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:31:39,252 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#13] 单个块脱离原语境时，检索器为什么难以把它和问题对上？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['块脱离原语境 检索器难以匹配问题 分块上下文缺失']
+2026-11-18 16:31:57,272 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:32:07,513 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#13] 单个块脱离原语境时，检索器为什么难以把它和问题对上？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['单个块脱离原语境时 检索器难以把块和问题匹配的原因']
+2026-11-18 16:32:20,885 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:32:28,716 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#13] 单个块脱离原语境时，检索器为什么难以把它和问题对上？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['单个块脱离原语境 检索器难以匹配 原因']
+2026-11-18 16:32:44,733 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:32:53,279 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#14] 为每个块生成上下文说明时，靠什么降低成本？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为每个块生成上下文说明 降低成本']
+2026-11-18 16:33:02,252 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:33:08,750 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#14] 为每个块生成上下文说明时，靠什么降低成本？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为每个块生成上下文说明 降低成本']
+2026-11-18 16:33:15,828 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:33:22,319 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#14] 为每个块生成上下文说明时，靠什么降低成本？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为每个块生成上下文说明时 靠什么降低成本']
+2026-11-18 16:33:31,635 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:33:36,706 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#15] 上下文化嵌入加上下文化 BM25 后，top-20 失败率从多少降到多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['上下文化嵌入 上下文化 BM25 top-20 失败率']
+2026-11-18 16:33:45,511 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:33:54,730 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#15] 上下文化嵌入加上下文化 BM25 后，top-20 失败率从多少降到多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['上下文化嵌入 上下文化 BM25 top-20 失败率']
+2026-11-18 16:34:03,535 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:34:09,268 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#15] 上下文化嵌入加上下文化 BM25 后，top-20 失败率从多少降到多少？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['上下文化嵌入 上下文化 BM25 top-20 失败率']
+2026-11-18 16:34:16,642 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:34:21,779 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#16] 重排序模型在流程中处理多少候选、保留多少个结果？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['重排序模型 处理候选数量 保留结果数量']
+2026-11-18 16:34:30,382 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:34:36,063 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#16] 重排序模型在流程中处理多少候选、保留多少个结果？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['重排序模型 处理候选数量 保留结果数量']
+2026-11-18 16:34:44,835 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:34:52,280 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#16] 重排序模型在流程中处理多少候选、保留多少个结果？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['重排序模型 处理候选数量 保留结果数量']
+2026-11-18 16:34:59,430 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:35:09,202 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#17] 为特定领域定制上下文生成的提示词时，加入什么内容往往效果更好？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为特定领域定制上下文生成的提示词 加入什么内容效果更好']
+2026-11-18 16:35:17,880 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:35:25,347 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#17] 为特定领域定制上下文生成的提示词时，加入什么内容往往效果更好？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为特定领域定制上下文生成的提示词 加入什么内容效果更好']
+2026-11-18 16:35:33,231 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:35:39,602 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#17] 为特定领域定制上下文生成的提示词时，加入什么内容往往效果更好？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['为特定领域定制上下文生成的提示词 加入什么内容效果更好']
+2026-11-18 16:35:47,152 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:35:54,310 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#18] 用自有内容给 LLM 响应接地，主要能缓解哪两类问题？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['用自有内容给 LLM 响应接地 缓解哪两类问题']
+2026-11-18 16:36:02,244 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:36:07,940 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#18] 用自有内容给 LLM 响应接地，主要能缓解哪两类问题？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['用自有内容给 LLM 响应接地 缓解哪两类问题']
+2026-11-18 16:36:19,255 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:36:26,393 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#18] 用自有内容给 LLM 响应接地，主要能缓解哪两类问题？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['用自有内容给 LLM 响应接地 缓解哪两类问题']
+2026-11-18 16:36:33,131 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:36:40,197 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#19] 企业内容散落在多个平台，会给 RAG 带来什么挑战？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['企业内容散落在多个平台 RAG 挑战']
+2026-11-18 16:36:50,335 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:36:58,615 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#19] 企业内容散落在多个平台，会给 RAG 带来什么挑战？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['企业内容散落在多个平台 RAG 挑战']
+2026-11-18 16:37:30,028 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:37:38,054 INFO qa.agent: 问答完成：共 1 轮工具调用
+[blind#19] 企业内容散落在多个平台，会给 RAG 带来什么挑战？ 应拒答=False 工具拒答=False 基线拒答=False 工具覆盖=1.0 基线覆盖=1.0 工具query=['企业内容散落在多个平台 RAG 挑战']
+2026-11-18 16:37:50,343 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:38:20,882 INFO qa.agent: 工具调用第 2 轮：模型请求 1 次检索
+2026-11-18 16:38:27,514 INFO qa.agent: 问答完成：共 2 轮工具调用
+[blind#20] 代理式检索返回的结果中内置了哪些配套信息？ 应拒答=False 工具拒答=False 基线拒答=True 工具覆盖=1.0 基线覆盖=0.0 工具query=['代理式检索 返回结果 内置配套信息', '代理式检索 agentic retrieval 结果包含 引用 结构化响应 子查询 语义排名']
+2026-11-18 16:39:05,198 INFO qa.agent: 工具调用第 1 轮：模型请求 1 次检索
+2026-11-18 16:39:16,975 INFO qa.agent: 问答完成：共 1 轮工具调用
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/site-packages/httpx2/_transports/default.py", line 98, in map_httpcore_exceptions
+    yield
+  File "/usr/local/lib/python3.13/site-packages/httpx2/_transports/default.py", line 245, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.13/site-packages/httpcore2/_sync/connection_pool.py", line 242, in handle_request
+    raise exc from None
+  File "/usr/local/lib/python3.13/site-packages/httpcore2/_sync/connection_pool.py", line 224, in handle_request
+    response = connection.handle_request(pool_request.request)
+  File "/usr/local/lib/python3.13/site-packages/httpcore2/_sync/connection.py", line 96, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/httpcore2/_sync/http11.py", line 125, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.13/site-packages/httpcore2/_sync/http11.py", line 97, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/httpcore2/_sync/http11.py", line 167, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "/usr/local/lib/python3.13/site-packages/httpcore2/_sync/http11.py", line 200, in _receive_event
+    data = self._network_stream.read(self.READ_NUM_BYTES, timeout=timeout)
+  File "/usr/local/lib/python3.13/site-packages/httpcore2/_backends/sync.py", line 125, in read
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/httpcore2/_exceptions.py", line 17, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore2.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/site-packages/openai/_base_client.py", line 1183, in request
+    response = self._send_request(
+        request,
+        stream=stream or self._should_stream_response_body(request=request),
+        **kwargs,
+    )
+  File "/usr/local/lib/python3.13/site-packages/openai/_client.py", line 211, in _send_request
+    return sync_send_request(self, request, stream=stream, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/openai/lib/_client_auth.py", line 328, in sync_send_request
+    response = self._send_with_auth_retry(request, stream=stream, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/openai/_client.py", line 197, in _send_with_auth_retry
+    return sync_send_with_auth_retry(
+        _runtime_cast(_RuntimeAny, super()).__thisclass__, self, request, stream=stream, retried=retried, **kwargs
+    )
+  File "/usr/local/lib/python3.13/site-packages/openai/lib/_client_auth.py", line 313, in sync_send_with_auth_retry
+    response = super(_owner, self)._send_request(request, stream=stream, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/openai/_base_client.py", line 1104, in _send_request
+    return self._client.send(request, stream=stream, **kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/httpx2/_client.py", line 979, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/usr/local/lib/python3.13/site-packages/httpx2/_client.py", line 1007, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/usr/local/lib/python3.13/site-packages/httpx2/_client.py", line 1042, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/usr/local/lib/python3.13/site-packages/httpx2/_client.py", line 1075, in _send_single_request
+    response = transport.handle_request(request)
+  File "/usr/local/lib/python3.13/site-packages/httpx2/_transports/default.py", line 244, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/httpx2/_transports/default.py", line 115, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx2.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/backend/manage.py", line 22, in <module>
+    main()
+    ~~~~^^
+  File "/app/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/django/core/management/base.py", line 420, in run_from_argv
+    self.execute(*args, **cmd_options)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/django/core/management/base.py", line 464, in execute
+    output = self.handle(*args, **options)
+  File "/app/backend/qa/management/commands/eval_tools.py", line 85, in handle
+    base_refused, _ = ask_with_db(question)
+                      ~~~~~~~~~~~^^^^^^^^^^
+  File "/app/backend/qa/service.py", line 39, in ask_with_db
+    response = chat_client.chat.completions.create(
+        model=CHAT_MODEL,
+    ...<4 lines>...
+        temperature=0,
+    )
+  File "/usr/local/lib/python3.13/site-packages/openai/_utils/_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1611, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<53 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/site-packages/openai/_base_client.py", line 1474, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/openai/_base_client.py", line 1201, in request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
