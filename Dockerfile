@@ -16,6 +16,7 @@ RUN pip install -r requirements.txt
 # 复制代码：rag 是核心模块，backend 是 Django 工程
 COPY rag/ ./rag/
 COPY backend/ ./backend/
+COPY agent/ ./agent/
 
 # 后续命令（manage.py、gunicorn）都在 backend 目录下执行
 WORKDIR /app/backend
