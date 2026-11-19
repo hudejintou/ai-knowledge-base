@@ -37,10 +37,13 @@ AskView ──► Redis 缓存（命中则直接返回）
 
 | 方法 | 路径 | 请求 | 响应 |
 | --- | --- | --- | --- |
-| POST | `/api/ask/` | `{"question": "..."}` | 200：`{"refused", "answer", "sources": [{"n", "text"}]}`；400：问题为空；502/503/500：上游或内部错误 |
-| POST | `/api/documents/` | `{"content": "..."}` | 202：`{"id", "status": "pending"}`；400：内容为空；503：任务队列不可用（文档已保存） |
+| POST | `/api/ask/` | `{"question": "..."}` | 200：`{"refused", "answer", "sources": [{"n", "doc_id", "text"}]}`；400：问题为空；502/503/500：上游或内部错误 |
+| POST | `/api/documents/` | `{"content": "..."}` | 202：`{"ids", "chunks", "status": "pending"}`；400：内容为空；503：任务队列不可用（块已保存，ids 随响应返回） |
 | GET | `/api/documents/<id>/` | — | 200：`{"id", "status": "ready" \| "pending", "content_length"}`；404：文档不存在 |
+| DELETE | `/api/documents/<id>/` | — | 204：删除成功；404：文档不存在。删除后清空问答缓存 |
+| DELETE | `/api/documents/batch/` | `{"ids": [1, 2]}` | 200：`{"deleted", "not_found"}`；400：ids 非法。删除后清空问答缓存 |
 
+注意：批量删除使用 DELETE 带请求体，部分代理和浏览器可能丢弃请求体，调用方需确认支持。
 注意：`baseline` 模式下 `sources` 恒为空列表。
 
 ## 快速开始（Docker）
@@ -127,10 +130,9 @@ docker compose cp web:/app/evals/runs/. ./evals/runs/
 - 管理后台没有静态文件，样式缺失，不影响 API。
 - 语料由 AI 改写，内容已人工核对，但仍建议抽查。
 
-- 文档切块按字符硬切（默认 400 字、重叠 50 字），不考虑句子边界，关键句可能被切在块边界附近。
+- 切块按字符硬切（默认 400 字、重叠 50 字），不考虑句子边界；切块参数是候选值，未与整段入库做前后召回对比，也未在更大语料上验证。
 - `POST /api/documents/` 返回 `ids` 列表（由早期的单个 `id` 改来，属于破坏性变化）。
 - `/api/ask/` 的 `sources` 返回整块正文，块较长时前端需要自行截断展示。
-- 切块参数（`CHUNK_SIZE`、`CHUNK_OVERLAP`）是候选值，尚未经过切块前后的召回对比验证。
 
 ## 项目结构
 
