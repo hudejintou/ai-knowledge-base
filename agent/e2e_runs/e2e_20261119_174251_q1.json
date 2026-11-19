@@ -1,0 +1,25 @@
+{
+  "index": 1,
+  "question": "北京现在多少度？",
+  "status": "done",
+  "answer": "北京现在的气温是 **0.5°C**，天气晴朗，风速约 4.9 km/h，比较寒冷，出门注意保暖哦！",
+  "trace": [
+    {
+      "step": 1,
+      "calls": [
+        {
+          "tool": "get_weather",
+          "args": {
+            "city": "北京"
+          },
+          "result": {
+            "city": "北京",
+            "temperature_c": 0.5,
+            "weather_code": 0,
+            "wind_kmh": 4.9
+          }
+        }
+      ]
+    }
+  ]
+}

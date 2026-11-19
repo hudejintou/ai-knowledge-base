@@ -1,0 +1,23 @@
+{
+  "index": 2,
+  "question": "帮我算一下 (12 + 8) * 3 等于多少？",
+  "status": "done",
+  "answer": "(12 + 8) * 3 = **60**",
+  "trace": [
+    {
+      "step": 1,
+      "calls": [
+        {
+          "tool": "calculate",
+          "args": {
+            "expression": "(12 + 8) * 3"
+          },
+          "result": {
+            "expression": "(12 + 8) * 3",
+            "result": 60
+          }
+        }
+      ]
+    }
+  ]
+}
