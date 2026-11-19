@@ -9,3 +9,5 @@ gunicorn>=23.0
 packaging>=24.0
 # Agent 天气工具：调用 Open-Meteo 的 HTTP 接口
 requests>=2.31
+# 测试依赖：缓存与问答接口测试使用的 Redis 内存模拟
+fakeredis>=2.20
